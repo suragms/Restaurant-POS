@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed": "#241a00",
+                "tertiary-fixed-dim": "#e7c365",
+                "on-primary-fixed": "#22005d",
+                "on-secondary-fixed-variant": "#4b4263",
+                "primary": "#4f378a",
+                "outline": "#7a7582",
+                "on-error-container": "#93000a",
+                "surface-container-highest": "#e6e0e9",
+                "surface-container-high": "#ece6ee",
+                "inverse-primary": "#cfbcff",
+                "outline-variant": "#cbc4d2",
+                "secondary-fixed-dim": "#cdc0e9",
+                "inverse-surface": "#322f35",
+                "secondary-container": "#e1d4fd",
+                "on-secondary-container": "#645a7d",
+                "on-tertiary-container": "#503d00",
+                "surface-container": "#f2ecf4",
+                "surface-dim": "#ded8e0",
+                "on-primary": "#ffffff",
+                "secondary-fixed": "#e9ddff",
+                "secondary": "#63597c",
+                "on-secondary-fixed": "#1f1635",
+                "primary-container": "#6750a4",
+                "tertiary-container": "#c9a74d",
+                "tertiary": "#765b00",
+                "surface-container-low": "#f8f2fa",
+                "on-tertiary": "#ffffff",
+                "surface": "#fdf7ff",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed-variant": "#594400",
+                "on-surface-variant": "#494551",
+                "surface-bright": "#fdf7ff",
+                "background": "#fdf7ff",
+                "error-container": "#ffdad6",
+                "surface-container-lowest": "#ffffff",
+                "surface-tint": "#6750a4",
+                "primary-fixed": "#e9ddff",
+                "on-primary-fixed-variant": "#4f378a",
+                "on-surface": "#1d1b20",
+                "primary-fixed-dim": "#cfbcff",
+                "on-primary-container": "#e0d2ff",
+                "on-error": "#ffffff",
+                "error": "#ba1a1a",
+                "surface-variant": "#e6e0e9",
+                "inverse-on-surface": "#f5eff7",
+                "tertiary-fixed": "#ffdf93",
+                "on-background": "#1d1b20"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "touch_target": "44px",
+                "xs": "4px",
+                "xl": "32px",
+                "lg": "24px",
+                "md": "16px",
+                "unit": "4px",
+                "sm": "8px"
+            },
+            "fontFamily": {
+                "headline-md": ["Inter"],
+                "headline-lg": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "display-lg": ["Inter"],
+                "label-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "price-display": ["Inter"]
+            },
+            "fontSize": {
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "price-display": ["28px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #1E293B; } /* Requested dark mode foundation override */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="overflow-hidden h-screen text-on-surface">
+<!-- Sidebar Navigation Shell -->
+<aside class="flex flex-col h-full p-4 bg-surface dark:bg-surface-dim text-primary dark:text-inverse-primary font-body-md text-body-md h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline shadow-sm z-50">
+<div class="mb-lg px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">GourmetPOS</h1>
+<p class="text-on-surface-variant text-sm">Main Dining Hall</p>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors cursor-pointer rounded-lg active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors cursor-pointer rounded-lg active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span>
+<span>POS</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors cursor-pointer rounded-lg active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="table_restaurant">table_restaurant</span>
+<span>Tables</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg font-bold active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>Orders</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors cursor-pointer rounded-lg active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors cursor-pointer rounded-lg active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span>Staff</span>
+</div>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors cursor-pointer rounded-lg">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</div>
+</div>
+</aside>
+<!-- Main Display Area -->
+<main class="ml-64 flex flex-col h-screen overflow-hidden">
+<!-- Top App Bar Shell -->
+<header class="flex justify-between items-center px-lg h-touch_target w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md text-primary dark:text-inverse-primary font-label-md text-label-md fixed top-0 right-0 w-[calc(100%-16rem)] z-40 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-black text-on-surface dark:text-inverse-on-surface">Kitchen Display</span>
+<div class="flex gap-md bg-surface-container p-sm rounded-full">
+<span class="px-md py-xs bg-primary text-on-primary rounded-full font-bold">Active: 12</span>
+<span class="px-md py-xs text-on-surface-variant">Delayed: 3</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-sm">
+<div class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="wifi_tethering">wifi_tethering</span>
+</div>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<span class="font-bold text-tertiary">Restaurant Open</span>
+<img class="w-8 h-8 rounded-full border-2 border-primary object-cover" data-alt="A professional headshot of a restaurant manager with a focused and confident expression. The lighting is warm and cinematic, suggesting an upscale dining environment. The background is slightly blurred, showing a high-end kitchen with stainless steel accents and soft ambient light, maintaining the sophisticated GourmetPOS brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIbB7mWFzBVG73zz1Jd6o3GWr-xGJ89XcQfzb3LQLUapbZzEsly0jvEibPkJS2MEQDAXXYU255Kyz3TSJMKo0csi2OzpRrjDZmGTyulWFqAQU8WIhUiORW5wUI3hICPmNYUl0-dcurIrScm9-2JjicNZLB07F0ec4Q1jhHuZOZXfMaZpcfljx5H_0O0ud6Rn-ECRVAdqfhe4_l7dAxX-M2PpGX9flaTFFwkjQKVtfsckrJsAUrMRXGc7-GwYqRE19Kk7kkqcs7H-Bc"/>
+</div>
+</header>
+<!-- KDS Grid -->
+<section class="mt-touch_target flex-1 overflow-x-auto overflow-y-hidden hide-scrollbar bg-[#0F172A] p-lg">
+<div class="flex gap-lg h-full">
+<!-- Order Card: Delayed -->
+<div class="flex-shrink-0 w-80 h-full flex flex-col bg-slate-800 rounded-xl shadow-lg border-t-8 border-error overflow-hidden">
+<div class="p-md bg-slate-900/50 flex justify-between items-start">
+<div>
+<span class="text-label-sm font-label-sm text-slate-400">TABLE</span>
+<h2 class="text-headline-lg font-headline-lg text-white">#14</h2>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-error" data-icon="timer">timer</span>
+<div class="text-error font-bold text-price-display">24:12</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-4">
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Classic Burger</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x2</span>
+</div>
+<ul class="mt-sm text-tertiary-fixed-dim text-body-md font-bold italic">
+<li>- No Onions</li>
+<li>- Extra Pickle</li>
+</ul>
+</div>
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Caesar Salad</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x1</span>
+</div>
+<ul class="mt-sm text-tertiary-fixed-dim text-body-md font-bold italic">
+<li>- Dressing on side</li>
+</ul>
+</div>
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Truffle Fries</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x1</span>
+</div>
+</div>
+</div>
+<div class="p-md bg-slate-900">
+<button class="w-full h-touch_target bg-error text-white font-bold rounded-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                            MARK READY
+                        </button>
+</div>
+</div>
+<!-- Order Card: Normal/Preparing -->
+<div class="flex-shrink-0 w-80 h-full flex flex-col bg-slate-800 rounded-xl shadow-lg border-t-8 border-primary overflow-hidden">
+<div class="p-md bg-slate-900/50 flex justify-between items-start">
+<div>
+<span class="text-label-sm font-label-sm text-slate-400">TABLE</span>
+<h2 class="text-headline-lg font-headline-lg text-white">#08</h2>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-slate-400" data-icon="timer">timer</span>
+<div class="text-white font-bold text-price-display">08:45</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-4">
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Ribeye Steak</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x1</span>
+</div>
+<ul class="mt-sm text-tertiary-fixed-dim text-body-md font-bold italic">
+<li>- Medium Rare</li>
+<li>- Substitute veggies</li>
+</ul>
+</div>
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Red Wine Sauce</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x1</span>
+</div>
+</div>
+</div>
+<div class="p-md bg-slate-900">
+<button class="w-full h-touch_target bg-primary text-on-primary font-bold rounded-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                            MARK READY
+                        </button>
+</div>
+</div>
+<!-- Order Card: Quick Items -->
+<div class="flex-shrink-0 w-80 h-full flex flex-col bg-slate-800 rounded-xl shadow-lg border-t-8 border-primary overflow-hidden">
+<div class="p-md bg-slate-900/50 flex justify-between items-start">
+<div>
+<span class="text-label-sm font-label-sm text-slate-400">TABLE</span>
+<h2 class="text-headline-lg font-headline-lg text-white">#22</h2>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-slate-400" data-icon="timer">timer</span>
+<div class="text-white font-bold text-price-display">02:30</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-4">
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Margarita Pizza</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x1</span>
+</div>
+</div>
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Diet Coke</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x3</span>
+</div>
+</div>
+</div>
+<div class="p-md bg-slate-900">
+<button class="w-full h-touch_target bg-primary text-on-primary font-bold rounded-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                            MARK READY
+                        </button>
+</div>
+</div>
+<!-- Order Card: Pending Out -->
+<div class="flex-shrink-0 w-80 h-full flex flex-col bg-slate-800 rounded-xl shadow-lg border-t-8 border-tertiary overflow-hidden">
+<div class="p-md bg-slate-900/50 flex justify-between items-start">
+<div>
+<span class="text-label-sm font-label-sm text-slate-400">TAKEOUT</span>
+<h2 class="text-headline-lg font-headline-lg text-white">#5512</h2>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-tertiary" data-icon="timer">timer</span>
+<div class="text-tertiary font-bold text-price-display">12:15</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-4">
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Sushi Platter B</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x1</span>
+</div>
+</div>
+<div class="border-b border-slate-700 pb-md">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-white">Miso Soup</span>
+<span class="bg-slate-700 text-white px-2 py-1 rounded text-sm">x2</span>
+</div>
+</div>
+</div>
+<div class="p-md bg-slate-900">
+<button class="w-full h-touch_target bg-primary text-on-primary font-bold rounded-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                            MARK READY
+                        </button>
+</div>
+</div>
+<!-- Bento Style Performance Card -->
+<div class="flex-shrink-0 w-80 h-full grid grid-rows-3 gap-md">
+<div class="row-span-1 bg-slate-800 rounded-xl p-md flex flex-col justify-center items-center text-center shadow-lg border border-slate-700">
+<span class="text-slate-400 text-label-md">AVG PREP TIME</span>
+<div class="text-display-lg font-display-lg text-white">14<span class="text-headline-md text-primary ml-1">min</span></div>
+<div class="text-tertiary text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                            2% vs Last Hour
+                        </div>
+</div>
+<div class="row-span-2 bg-slate-800 rounded-xl p-md flex flex-col shadow-lg border border-slate-700 overflow-hidden relative">
+<div class="z-10">
+<span class="text-slate-400 text-label-md">KITCHEN LOAD</span>
+<div class="text-headline-lg font-headline-lg text-white">HIGH CAPACITY</div>
+</div>
+<div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-primary/20 to-transparent flex items-end px-md pb-md">
+<div class="flex w-full items-end gap-1 h-32">
+<div class="w-full bg-primary/40 h-1/4 rounded-t-sm"></div>
+<div class="w-full bg-primary/40 h-2/4 rounded-t-sm"></div>
+<div class="w-full bg-primary/60 h-3/4 rounded-t-sm"></div>
+<div class="w-full bg-primary h-full rounded-t-sm"></div>
+<div class="w-full bg-primary/80 h-4/5 rounded-t-sm"></div>
+<div class="w-full bg-primary/50 h-2/3 rounded-t-sm"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Kitchen Alert Footer -->
+<footer class="h-12 bg-error text-white flex items-center justify-center gap-4 px-lg font-bold animate-pulse">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span>CRITICAL: 3 Orders are over the 20-minute threshold. Priority attention required.</span>
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</footer>
+</main>
+<!-- Contextual FAB (Only for quick alert/help in KDS) -->
+<button class="fixed bottom-16 right-8 w-14 h-14 bg-tertiary text-on-tertiary rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="help">help</span>
+</button>
+</body></html>

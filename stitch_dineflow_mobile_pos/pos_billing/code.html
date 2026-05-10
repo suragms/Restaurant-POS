@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>CravePOS - Billing Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#111c2d",
+                        "secondary-fixed": "#d8e3fb",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-primary-container": "#5f1900",
+                        "surface-container-high": "#fde3db",
+                        "inverse-on-surface": "#ffede8",
+                        "on-surface-variant": "#594139",
+                        "secondary-container": "#d5e0f8",
+                        "primary-fixed-dim": "#ffb59d",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#832600",
+                        "secondary": "#545f73",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#ab3500",
+                        "primary": "#ab3500",
+                        "on-primary-fixed": "#390c00",
+                        "surface-container": "#ffe9e3",
+                        "on-background": "#261814",
+                        "on-tertiary-container": "#003744",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#00a7cb",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#fff1ed",
+                        "on-error-container": "#93000a",
+                        "background": "#fff8f6",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "outline": "#8d7168",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "on-surface": "#261814",
+                        "on-secondary-container": "#586377",
+                        "inverse-primary": "#ffb59d",
+                        "outline-variant": "#e1bfb5",
+                        "surface-container-highest": "#f7ddd5",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#f7ddd5",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdbd0",
+                        "primary-container": "#ff6b35",
+                        "inverse-surface": "#3c2d28",
+                        "tertiary": "#00677e",
+                        "surface-dim": "#eed5cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "safe-area": "20px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter": "12px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "price-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "price-lg": ["24px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-40">
+<!-- TopAppBar -->
+<header class="bg-surface/70 backdrop-blur-xl fixed top-0 z-40 border-b border-outline-variant/30 shadow-sm flex justify-between items-center w-full px-safe-area h-16">
+<div class="flex items-center gap-md">
+<button class="active:scale-95 transition-transform duration-200 text-primary p-2 rounded-lg hover:bg-surface-container-highest/50">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">CravePOS</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="active:scale-95 transition-transform duration-200 text-primary p-2 rounded-lg hover:bg-surface-container-highest/50">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="active:scale-95 transition-transform duration-200 text-primary p-2 rounded-lg hover:bg-surface-container-highest/50 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<main class="pt-16 px-safe-area">
+<!-- Search Bar Section -->
+<div class="mt-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 text-body-md focus:ring-2 focus:ring-primary/20 placeholder:text-on-surface-variant/50 transition-all" placeholder="Search menu items..." type="text"/>
+</div>
+</div>
+<!-- Categories Slider -->
+<div class="mt-lg -mx-safe-area px-safe-area flex gap-sm overflow-x-auto hide-scrollbar pb-2">
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-primary-container text-on-primary font-label-caps text-label-caps shadow-md active:scale-95 transition-all">All</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">Appetizers</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">Mains</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">Beverages</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">Desserts</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">Specials</button>
+</div>
+<!-- Menu Grid -->
+<div class="mt-lg grid grid-cols-2 gap-md md:grid-cols-4">
+<!-- Item Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden group active:scale-95 transition-all">
+<div class="aspect-square w-full bg-surface-container-high relative overflow-hidden">
+<img alt="Avocado Toast" class="w-full h-full object-cover" data-alt="A gourmet avocado toast presented on a rustic ceramic plate, topped with a perfectly poached egg and vibrant micro-greens. The shot is captured in a bright, airy restaurant setting with warm sunlight streaming in, highlighting the textures of the crusty sourdough bread. The aesthetic is clean and modern, consistent with high-end food photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtXudWTRcXCzeo-C2S0nS2VddYfGyWnQ9lPk1cnOam_V9YeG4aKDIW-vrVmpjD4HJBZjt1tR060cT91hbDfnxeMoyChYg9vyp2aOT04XR4ShpoIf1ExVFXooWPrXc7VB-OwaDlkApbP34fJHPAG4BayeBLIhv_-JE8_MAHdkRV4dXeC-VMTSF-2B6YkzWne93GjB2RDi3MYNIBBf_QmRbk1u5fCF_aQIMZl-IFZnv5-dy77Jk-6pHCzqB2PQPZHrx-ezfeyuMco-OO"/>
+<div class="absolute top-2 right-2 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg">
+<span class="font-price-lg text-[14px] text-primary">$14.50</span>
+</div>
+</div>
+<div class="p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Avocado Toast</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 mt-1">Sourdough &amp; poached egg</p>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden group active:scale-95 transition-all">
+<div class="aspect-square w-full bg-surface-container-high relative overflow-hidden">
+<img alt="Classic Cheeseburger" class="w-full h-full object-cover" data-alt="A juicy, stacked cheeseburger with melting cheddar, crisp lettuce, and fresh tomato on a toasted brioche bun. The burger is placed on a minimalist slate background with professional studio lighting that emphasizes the rich textures and appetizing colors of the ingredients. The overall vibe is energetic and premium for a high-velocity kitchen environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKAtlkWcv3NrSm1S95QoiAx1kMpf3A89Ko0OpayCPAll4tkBDh2HijlqAEunqqTC47SADolRqzpEOa_lQNXNetZn1S3T6JQJHnA9mo5tO-YpKos2UKebA2pYSX1TfY5LZIS25qNBbPh9DGHSAEGX3MXMvx2zLOfgVvdy2J4XD9C2LHR2KoYiHAtQU0GtQykwLmrGlIzoba_8p0PpnUDbYZJBY7yakI7yTVxHJU8BxrgnBthgDQOvX5uS8KGGGrF9-tGEBx0VeVJ-Mf"/>
+<div class="absolute top-2 right-2 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg">
+<span class="font-price-lg text-[14px] text-primary">$18.00</span>
+</div>
+</div>
+<div class="p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Wagyu Burger</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 mt-1">Truffle aioli &amp; swiss</p>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden group active:scale-95 transition-all">
+<div class="aspect-square w-full bg-surface-container-high relative overflow-hidden">
+<img alt="Mediterranean Salad" class="w-full h-full object-cover" data-alt="A vibrant Mediterranean salad in a deep white bowl featuring fresh cucumbers, kalamata olives, feta cheese cubes, and cherry tomatoes. The scene is lit with bright, natural daylight to create a fresh and healthy visual appeal. The color palette is dominated by deep greens and bright reds, set against a clean slate-tinted tabletop for a modern feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc0HFHJB2x2tXezolxOtbKNwb_SlutZ-aQkKGd55tGJFcdWpu8cvbHZEaKoU8pB2NrBHXUmRe0GJYAREaZAY8WAdKFhlYyY5W9FrlRT0GcyDQwBDYGgMZVMzr4wMJl3II-lswntd_AIer2VBdkOZHKMMxUukvh5KsmLU_lvYFsW4H3LBPzaq-zfOzTHxyjZOloYyr46LvsFiWt4i-Hn1kCZOD5zNwCEVhsuIyBnh_WhXV1cXAJ1OiKON8bcwkMhzyQ6fDLVMh7T25H"/>
+<div class="absolute top-2 right-2 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg">
+<span class="font-price-lg text-[14px] text-primary">$12.00</span>
+</div>
+</div>
+<div class="p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Feta &amp; Olive Bowl</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 mt-1">Lemon herb dressing</p>
+</div>
+</div>
+<!-- Item Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden group active:scale-95 transition-all">
+<div class="aspect-square w-full bg-surface-container-high relative overflow-hidden">
+<img alt="Iced Coffee" class="w-full h-full object-cover" data-alt="A tall glass of layered iced coffee with creamy milk swirling into dark espresso, topped with a few ice cubes. The background is a soft-focus minimalist cafe interior with bright high-key lighting. The aesthetic is cool and refreshing, emphasizing the high-end fintech and modern hospitality atmosphere with a glassmorphic depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAClnrZT3S1GawJnful_3mrCKXJIrNY3wh9nCmaT5hulxkvo_5FFlXV8Pv1ozyC7O7q22S3zcr_4n29m6oKpMncoFcValoJRXSay98ZuAtsUP88RCO6d9YRdtCepJV2Tgc212OObm3Rf5mnxs7rTgaTXbLuChwDq14AaobyPs9HVaNGNDKDZ9Rcfqu-wFcZtQzVFl69_1YSIP4DsF2xrDeaaXICwwoTOi5PLMuhJoIFG6rlzyouXJssC7AeLciqH9_RFA2z0ZBaBgbR"/>
+<div class="absolute top-2 right-2 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg">
+<span class="font-price-lg text-[14px] text-primary">$6.50</span>
+</div>
+</div>
+<div class="p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Nitro Cold Brew</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 mt-1">Velvety &amp; smooth</p>
+</div>
+</div>
+<!-- Item Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden group active:scale-95 transition-all">
+<div class="aspect-square w-full bg-surface-container-high relative overflow-hidden">
+<img alt="Lava Cake" class="w-full h-full object-cover" data-alt="A decadent chocolate lava cake with a molten center being broken by a spoon, dusted with powdered sugar and served with a scoop of vanilla bean gelato. The lighting is dramatic and warm, creating a luxurious and reliable brand personality. The presentation is professional and precise, following modern culinary standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjQRQ2h7qEz-GQ8RKhrbRGzYqnoJkUQFxlZx1S-wjdfZTqBpZcr4ZJeiHAywpcyzVSxbml8QnhbN2o1LQcfkchdOkUhKi99rZTa1_xil3spfGzHC8dab7UyB0DfCSY8LRTP8eHV3UFsgk4qwtR3bGXXXQVMr3IE9BQNRZ27a2_rlPexMEj91bi2AE5HV87fSOW2w6-6Ox90_zMVdsfNdny48Q7VEjEZDGcoXJJl5QRTVLeM1W3tdQmWK5uZPBB9YiEMh_RAI6TB2mf"/>
+<div class="absolute top-2 right-2 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg">
+<span class="font-price-lg text-[14px] text-primary">$9.00</span>
+</div>
+</div>
+<div class="p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Molten Lava Cake</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 mt-1">Valrhona dark chocolate</p>
+</div>
+</div>
+<!-- Item Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden group active:scale-95 transition-all">
+<div class="aspect-square w-full bg-surface-container-high relative overflow-hidden">
+<img alt="Ribeye Steak" class="w-full h-full object-cover" data-alt="A perfectly seared ribeye steak resting on a wooden board, garnished with roasted garlic cloves and a sprig of rosemary. The lighting is moody and sophisticated, highlighting the glistening juices and crust of the meat. The composition is clean and focused, reflecting the precision of a high-end POS interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw45gDu-YOT1oak5fC2KDfPtsBekMMChkegNhhiVLq5JUciUKFob4PziJiqX368aMF9NoF3mN_ul-iWG6Lqa3VeVQVGxvXQcDNHjsDJPKTSwh9PnlYbm57MRmncwikO6cr7TLr0g8HVa89au40UEUk72N1Ul8y-gSjV3P9NRomoBMnU9Ez9A9x2a7RmUSWEgq7F372MSjkgmBCZ1wU9iOyUzohHOhFA8QNr-psfhZvqYLVMzwe8635XAsEyddPUYd_t-V1yAS4zc3n"/>
+<div class="absolute top-2 right-2 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg">
+<span class="font-price-lg text-[14px] text-primary">$34.00</span>
+</div>
+</div>
+<div class="p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Signature Ribeye</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 mt-1">Grass-fed, 12oz</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Cart Action Bar -->
+<div class="fixed bottom-24 left-safe-area right-safe-area z-[45]">
+<div class="bg-surface/80 backdrop-blur-2xl border border-outline-variant/30 shadow-2xl rounded-2xl flex items-center justify-between p-4 px-lg transition-transform hover:scale-[1.01]">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="shopping_basket" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface">3 Items</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase opacity-70">Ready to bill</span>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<span class="font-price-lg text-price-lg text-primary">$44.50</span>
+<button class="bg-primary hover:bg-primary/90 text-on-primary px-lg py-sm rounded-xl font-headline-md text-[18px] shadow-lg active:scale-95 transition-all">
+                    Checkout
+                </button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-safe-area h-20 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-2xl border-t border-outline-variant/20 z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-secondary opacity-70 hover:text-primary-container active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary opacity-70 hover:text-primary-container active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="table_restaurant">table_restaurant</span>
+<span class="font-label-caps text-label-caps mt-1">Tables</span>
+</a>
+<!-- Active Tab: Billing -->
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-caps text-label-caps mt-1">Billing</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary opacity-70 hover:text-primary-container active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-caps text-label-caps mt-1">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary opacity-70 hover:text-primary-container active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

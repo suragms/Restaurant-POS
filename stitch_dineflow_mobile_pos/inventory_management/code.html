@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>CravePOS Inventory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#111c2d",
+                        "secondary-fixed": "#d8e3fb",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-primary-container": "#5f1900",
+                        "surface-container-high": "#fde3db",
+                        "inverse-on-surface": "#ffede8",
+                        "on-surface-variant": "#594139",
+                        "secondary-container": "#d5e0f8",
+                        "primary-fixed-dim": "#ffb59d",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#832600",
+                        "secondary": "#545f73",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#ab3500",
+                        "primary": "#ab3500",
+                        "on-primary-fixed": "#390c00",
+                        "surface-container": "#ffe9e3",
+                        "on-background": "#261814",
+                        "on-tertiary-container": "#003744",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#00a7cb",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#fff1ed",
+                        "on-error-container": "#93000a",
+                        "background": "#fff8f6",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "outline": "#8d7168",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "on-surface": "#261814",
+                        "on-secondary-container": "#586377",
+                        "inverse-primary": "#ffb59d",
+                        "outline-variant": "#e1bfb5",
+                        "surface-container-highest": "#f7ddd5",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#f7ddd5",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdbd0",
+                        "primary-container": "#ff6b35",
+                        "inverse-surface": "#3c2d28",
+                        "tertiary": "#00677e",
+                        "surface-dim": "#eed5cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "safe-area": "20px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter": "12px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "price-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "price-lg": ["24px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-glow {
+            box-shadow: 0 0 20px rgba(171, 53, 0, 0.15);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- Top AppBar -->
+<header class="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl docked full-width top-0 z-40 border-b border-outline-variant/30 shadow-sm flex justify-between items-center w-full px-safe-area h-16 sticky">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-highest/50 transition-colors p-sm rounded-full active:scale-95 duration-200" data-icon="menu">menu</button>
+<h1 class="font-display-lg text-display-lg text-primary dark:text-primary-fixed-dim tracking-tight">CravePOS</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-highest/50 transition-colors p-sm rounded-full active:scale-95 duration-200" data-icon="notifications">notifications</button>
+</div>
+</header>
+<main class="px-safe-area py-md">
+<!-- Search & Actions Header -->
+<section class="flex flex-col gap-md mb-lg">
+<div class="flex items-center gap-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Inventory Management</h2>
+<div class="ml-auto flex gap-xs">
+<button class="bg-primary-container text-on-primary-container px-md h-10 rounded-full font-label-caps text-label-caps flex items-center gap-xs active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        ADD INVENTORY
+                    </button>
+</div>
+</div>
+<!-- Enhanced Search Bar -->
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-60">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-on-surface-variant/50" placeholder="Search by product, SKU, or supplier..." type="text"/>
+</div>
+<!-- Categories Chips -->
+<div class="flex gap-sm overflow-x-auto hide-scrollbar pb-xs">
+<button class="bg-primary text-on-primary px-lg h-9 rounded-full font-label-caps text-label-caps whitespace-nowrap">ALL ITEMS</button>
+<button class="bg-surface-container text-on-surface-variant px-lg h-9 rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-high transition-colors">KITCHEN</button>
+<button class="bg-surface-container text-on-surface-variant px-lg h-9 rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-high transition-colors">BAR</button>
+<button class="bg-surface-container text-on-surface-variant px-lg h-9 rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-high transition-colors">SUPPLIES</button>
+<button class="bg-surface-container text-on-surface-variant px-lg h-9 rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-high transition-colors">DRY STORAGE</button>
+</div>
+</section>
+<!-- Inventory Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Item Card: Low Stock Alert -->
+<div class="glass-card rounded-xl overflow-hidden p-md flex flex-col gap-sm group relative border-error/20 bg-error-container/5">
+<div class="flex gap-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close up high-quality photography of premium organic beef steaks with rich marbling, presented on a dark slate surface with soft dramatic lighting. The image evokes a sense of high-end restaurant quality and culinary precision, using the primary brand color for warmth and reliability in a professional light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMVrPyimZUNP5zqVvWtk6pBCcxvKheyqjCO7WGKv8GaYVL-pZqlb5cpkIH91UKs_8bji-PuQcPbVPdg1BgOOMlA8FbFT9Vw6ZUfqoRmg4a9jVErl_la6pRLZyUxUGruD5Rjrm2rXfO730qrHuWmvoFGf7l0D0sGA0kUpoCDYukMIkJucX-Qo1RX0HKfQ3iTfBwPHVU7RTG1mAKCbm7U0rOEbutbI0F-aT6sCyb7NwTYwEE3gOwcbWZ6ZFQ-9eREQrbtOKuvU1kDnpy"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface truncate">Wagyu Beef Ribeye</h3>
+<span class="bg-error/10 text-error text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">LOW STOCK</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 mt-xs">Supplier: Heritage Farms</p>
+<p class="text-body-sm font-body-sm text-primary font-bold mt-xs">Qty: 4.2 kg</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-xs pt-sm border-t border-outline-variant/10">
+<span class="font-label-caps text-label-caps text-on-surface-variant/60">REORDER POINT: 10kg</span>
+<button class="text-primary font-label-caps text-label-caps hover:underline">REORDER</button>
+</div>
+</div>
+<!-- Item Card: Healthy Stock -->
+<div class="glass-card rounded-xl overflow-hidden p-md flex flex-col gap-sm group relative">
+<div class="flex gap-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A clean top-down view of fresh, vibrant green avocados arranged neatly on a pristine white marble background. The lighting is high-key and bright, emphasizing a healthy and fresh aesthetic for a professional food service inventory application. The color palette is minimal and modern, dominated by fresh greens and whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC391S7gC1v1n7Teq52tnUP0akssq7186pdg9oYHf_6qCP69HpM2m1V2Qrcng8zrEj4JyYbc57TQVtcAwGLN6sFTdRT_83cOueJd_5j9ZsuKoHjGRBI4LTFpwx7rljOfyEhGvT9CBhUkOYwhhQFKy73g9aZneGXWX6zNz9CgelmbZVcNpZeJUfBA8FGLSEtLmUBZbyeSejhgHOhovI4priUEFr8MmLXL39Mu4WZvzzD8HwS7laPW2GyiGxxwmHPkeDIS07oUQl18LqS"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface truncate">Fresh Avocados</h3>
+<span class="bg-tertiary-container/30 text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">IN STOCK</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 mt-xs">Supplier: Valley Produce</p>
+<p class="text-body-sm font-body-sm text-on-surface font-bold mt-xs">Qty: 85 Units</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-xs pt-sm border-t border-outline-variant/10">
+<span class="font-label-caps text-label-caps text-on-surface-variant/60">SHELF LIFE: 4 DAYS</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="edit">edit</button>
+</div>
+</div>
+<!-- Item Card: Healthy Stock -->
+<div class="glass-card rounded-xl overflow-hidden p-md flex flex-col gap-sm group relative">
+<div class="flex gap-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A macro photograph of high-quality coffee beans in a burlap sack, highlighting the rich brown textures and oily sheen. The lighting is warm and directional, emphasizing the artisan quality of the product. The overall visual style is sleek and reliable, consistent with a high-end fintech restaurant management interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZAVLXmJPQLn4q3rfR4qmRS1yBu-oeo-zeHa-ODrnx5l5DTDcCKs70p2_TWPjAywus_yWljd7vymPlybwZ6ywpFeRCRYn6Eve07UZmrliGZ5AqUCg7W-bdi1GJ484rh0C0d3bJYeINAm5qAzWaXL60Imm2c_mCYEZIeKyhaZBwhqE9gcG7R75OQPuC87HJTmSpKkgimZTDNrH5pFRZMTbzNppnq79SlnUhg90HvNNgN7oklSFcyJ6LCqmJ0NI2mvA8_yaHBfkNg2DK"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface truncate">Espresso Blend No. 4</h3>
+<span class="bg-tertiary-container/30 text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">IN STOCK</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 mt-xs">Supplier: Bean &amp; Co.</p>
+<p class="text-body-sm font-body-sm text-on-surface font-bold mt-xs">Qty: 12.0 kg</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-xs pt-sm border-t border-outline-variant/10">
+<span class="font-label-caps text-label-caps text-on-surface-variant/60">SKU: ESP-004-DARK</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="edit">edit</button>
+</div>
+</div>
+<!-- Item Card: Bar/Liquor -->
+<div class="glass-card rounded-xl overflow-hidden p-md flex flex-col gap-sm group relative">
+<div class="flex gap-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An elegant arrangement of clear glassware and cocktail ingredients on a polished bar top. The scene is illuminated by soft, moody accent lighting that creates clean reflections and highlights the transparency of the glass. The style is modern minimalist with a focus on precision and high-velocity hospitality management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw1TXyO8Y7hRux1f4ScMaaMcMDNUQ6GAlzE-G3q9Ema7XKL8jK0AyrJdqMxCN2tGHvCwiS3i5yYta5eOwf_gwFOOnB2KzPd-tmRnwb8gcsXRtztqg348ULhciQtqCE-Lej-4Pes-ztde_UHCv5LhBvCJNPcQZmK46gfap1raP7TWegD95C7QDMnSK_RaFWrXmm2VH_y76SPAKWKRP1b7T6i6EiYhVaVRhnRkmmFJyQijDbqqK3y3wuTjHflqs_1k89P5OCzFKHHQD9"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface truncate">Premium Gin - 750ml</h3>
+<span class="bg-tertiary-container/30 text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">IN STOCK</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 mt-xs">Supplier: Spirits District</p>
+<p class="text-body-sm font-body-sm text-on-surface font-bold mt-xs">Qty: 24 Bottles</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-xs pt-sm border-t border-outline-variant/10">
+<span class="font-label-caps text-label-caps text-on-surface-variant/60">CATEGORY: BAR</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="edit">edit</button>
+</div>
+</div>
+<!-- Item Card: Low Stock Alert -->
+<div class="glass-card rounded-xl overflow-hidden p-md flex flex-col gap-sm group relative border-error/20 bg-error-container/5">
+<div class="flex gap-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A stack of clean, white biodegradable takeaway containers organized neatly in a modern kitchen setting. The lighting is bright and even, reinforcing the clean and efficient operational mood of the UI. The composition is balanced and professional, with a focus on sustainable restaurant supplies and inventory control." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe5NNpYlK_dLRDsGzdwxPXM-DX65PpVkiEdexhbYSlq5Rx_Nd_19l_27BHAVVkWWrcc8H6XR2flR3KZ-qHGMeLN4pgaufHq5gvRqns3vGiduZt_b33k9zw6Oepm9vLjfzchLWcLhxwTD1wtJ-PP1Whtohegj1BKbnwjO8Tw_S2Uydxw9AF6B-K-pYtTeeQ0SNaUluu1-hXqFatAF-7zXS0zZGgFQtwErHRNfVaFdOQ8fE4wH0uBrvjbhcjJj7pKph-Ki1KaTL3vQT1"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface truncate">Eco-To-Go Boxes (L)</h3>
+<span class="bg-error/10 text-error text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">LOW STOCK</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 mt-xs">Supplier: GreenPack Inc.</p>
+<p class="text-body-sm font-body-sm text-primary font-bold mt-xs">Qty: 150 Units</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-xs pt-sm border-t border-outline-variant/10">
+<span class="font-label-caps text-label-caps text-on-surface-variant/60">REORDER POINT: 500</span>
+<button class="text-primary font-label-caps text-label-caps hover:underline">REORDER</button>
+</div>
+</div>
+<!-- Item Card: Healthy Stock -->
+<div class="glass-card rounded-xl overflow-hidden p-md flex flex-col gap-sm group relative">
+<div class="flex gap-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Fresh heirloom tomatoes in a rustic wooden crate, captured with natural morning light that emphasizes their rich reds and yellows. The image conveys quality and reliability, aligning with the CravePOS brand identity. The visual style is crisp and detailed, fitting into a modern, minimalist light-mode dashboard for restaurant managers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlVdz-5--6qFtAuWsVVaL-XfEqznktfRks503VzvwZHVEl7FSec9gb8WWdnF_ik9U-7pX6VU_dgYkomVyo5SvF-yl7jB52PsZ31cyhYKi67s2KoYo9fVbeKR9zVZbaoSnHqR_yekq75HuTNrKB_8_f8dFVrVpWA4vay8Dqn_Ic5Ay6zRlB9Tzu4IR2w0Xhhbgsbz_BBJTbsF3YKZZ4hhxunVjj6c71VH6-TlrchicAnZr0fqOuRdZbqZj8EVLyPUHdtkQcXHGcQo4P"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-title-sm text-title-sm text-on-surface truncate">Heirloom Tomato Mix</h3>
+<span class="bg-tertiary-container/30 text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">IN STOCK</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 mt-xs">Supplier: Valley Produce</p>
+<p class="text-body-sm font-body-sm text-on-surface font-bold mt-xs">Qty: 5.5 kg</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-xs pt-sm border-t border-outline-variant/10">
+<span class="font-label-caps text-label-caps text-on-surface-variant/60">CATEGORY: KITCHEN</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="edit">edit</button>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB: Scan Barcode -->
+<button class="fixed bottom-24 right-6 w-16 h-16 bg-primary-container text-on-primary-container rounded-full shadow-[0_8px_24px_rgba(171,53,0,0.3)] flex items-center justify-center z-50 hover:scale-105 active:scale-90 transition-all group">
+<span class="material-symbols-outlined text-[32px] group-hover:rotate-12 transition-transform" data-icon="barcode_scanner">barcode_scanner</span>
+<span class="absolute right-full mr-4 bg-on-surface text-surface text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">SCAN BARCODE</span>
+</button>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-safe-area h-20 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-2xl border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(30,41,59,0.08)] z-50 rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="table_restaurant">table_restaurant</span>
+<span class="font-label-caps text-label-caps mt-1">Tables</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-caps text-label-caps mt-1">Billing</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold active:scale-90 transition-all duration-150 active-nav-glow rounded-xl p-xs">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-caps text-label-caps mt-1">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps mt-1">Settings</span>
+</div>
+</nav>
+<!-- Navigation Drawer (Kitchen Mode Indicator/Access) -->
+<aside class="fixed inset-y-0 left-0 z-[60] flex flex-col p-md bg-surface dark:bg-surface-dim h-full w-72 rounded-r-xl shadow-xl -translate-x-full transition-transform duration-300">
+<div class="flex flex-col gap-sm pb-lg border-b border-outline-variant/10">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm">Chef de Cuisine</h4>
+<p class="text-body-sm text-on-surface-variant/70">Shift: Morning</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant/60">STATION 04</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs mt-md divide-y divide-outline-variant/10">
+<a class="flex items-center gap-md p-md hover:bg-surface-container-high transition-transform active:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="restaurant">restaurant</span>
+<span class="font-body-md">Kitchen Mode</span>
+</a>
+<a class="flex items-center gap-md p-md bg-primary-container text-on-primary-container rounded-lg mx-2 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-md p-md hover:bg-surface-container-high transition-transform active:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="analytics">analytics</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md p-md hover:bg-surface-container-high transition-transform active:translate-x-1 rounded-lg mt-auto text-error" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md">Logout</span>
+</a>
+</nav>
+</aside>
+</body></html>

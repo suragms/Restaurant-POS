@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GourmetPOS - Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#241a00",
+                    "tertiary-fixed-dim": "#e7c365",
+                    "on-primary-fixed": "#22005d",
+                    "on-secondary-fixed-variant": "#4b4263",
+                    "primary": "#4f378a",
+                    "outline": "#7a7582",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e6e0e9",
+                    "surface-container-high": "#ece6ee",
+                    "inverse-primary": "#cfbcff",
+                    "outline-variant": "#cbc4d2",
+                    "secondary-fixed-dim": "#cdc0e9",
+                    "inverse-surface": "#322f35",
+                    "secondary-container": "#e1d4fd",
+                    "on-secondary-container": "#645a7d",
+                    "on-tertiary-container": "#503d00",
+                    "surface-container": "#f2ecf4",
+                    "surface-dim": "#ded8e0",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#e9ddff",
+                    "secondary": "#63597c",
+                    "on-secondary-fixed": "#1f1635",
+                    "primary-container": "#6750a4",
+                    "tertiary-container": "#c9a74d",
+                    "tertiary": "#765b00",
+                    "surface-container-low": "#f8f2fa",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#fdf7ff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#594400",
+                    "on-surface-variant": "#494551",
+                    "surface-bright": "#fdf7ff",
+                    "background": "#fdf7ff",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#6750a4",
+                    "primary-fixed": "#e9ddff",
+                    "on-primary-fixed-variant": "#4f378a",
+                    "on-surface": "#1d1b20",
+                    "primary-fixed-dim": "#cfbcff",
+                    "on-primary-container": "#e0d2ff",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e6e0e9",
+                    "inverse-on-surface": "#f5eff7",
+                    "tertiary-fixed": "#ffdf93",
+                    "on-background": "#1d1b20",
+                    "action-orange": "#FF6B00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch_target": "44px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "unit": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "price-display": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "price-display": ["28px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #F8FAFC; font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-left: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.03);
+        }
+        .item-card {
+            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .item-card:active { transform: scale(0.98); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline shadow-sm flex flex-col p-4 z-50">
+<div class="mb-xl px-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">GourmetPOS</h1>
+<p class="text-on-surface-variant font-label-sm">Main Dining Hall</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale" style="font-variation-settings: 'FILL' 1;">point_of_sale</span>
+<span class="font-body-md">POS</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="table_restaurant">table_restaurant</span>
+<span class="font-body-md">Tables</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-body-md">Staff</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md">Reports</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 mr-96 min-h-screen">
+<!-- Top App Bar -->
+<header class="fixed top-0 right-96 left-64 z-40 bg-surface/80 backdrop-blur-md px-lg h-touch_target flex justify-between items-center border-b border-outline-variant">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search menu items..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md ml-lg">
+<div class="flex items-center gap-sm bg-tertiary-container/20 px-4 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="fiber_manual_record" style="font-variation-settings: 'FILL' 1;">fiber_manual_record</span>
+<span class="font-label-md text-on-tertiary-container">Restaurant Open</span>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</button>
+</div>
+<img alt="Manager Profile" class="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" data-alt="A professional headshot of a restaurant manager in a minimalist white-collar shirt, set against a blurred, high-end restaurant interior with warm ambient lighting. The style is clean and corporate, featuring a soft bokeh effect and natural color tones that align with a premium hospitality brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALtBx_L5wF5tzmFIIfiCXIWimXMoCrau4XOFLUwaOTQPJmsF7jUzjnwQv7tmsNmsk91C9AmNjKwX-22Kr9sOgDLf5UVBbPkdF7XJlSomhM3a4bbJBNNjlqc-NjmMwtGPf5ZQsovQKQCl_6BSijtwiKq5jBcByp6KgXkJQ3Dk52Cepl_kL4dKzYiSktcjhHGEUokNvsdqKAFk6BK1Jh_vzQZNWPDtsMlQ3kJy2PV-gqmehR1j4mUIaXFLVoxwii2A5MmaBr_H8Omuis"/>
+</div>
+</header>
+<!-- Product Grid & Filters -->
+<div class="pt-touch_target px-lg pb-lg">
+<!-- Category Filter Bar -->
+<div class="sticky top-touch_target z-30 bg-[#F8FAFC]/90 backdrop-blur-sm py-md flex gap-sm overflow-x-auto no-scrollbar">
+<button class="px-6 py-2 bg-primary text-on-primary rounded-full font-label-md shadow-lg shadow-primary/20">All Items</button>
+<button class="px-6 py-2 bg-white text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-colors">Starters</button>
+<button class="px-6 py-2 bg-white text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-colors">Mains</button>
+<button class="px-6 py-2 bg-white text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-colors">Desserts</button>
+<button class="px-6 py-2 bg-white text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-colors">Beverages</button>
+<button class="px-6 py-2 bg-white text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-colors">Wine List</button>
+</div>
+<!-- Grid Content -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-lg mt-md">
+<!-- Item Card 1 -->
+<div class="item-card bg-white rounded-xl overflow-hidden cursor-pointer flex flex-col group">
+<div class="relative h-40 overflow-hidden">
+<img alt="Avocado Salad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A high-quality, professional food photograph of a fresh avocado salad with mixed greens, cherry tomatoes, and citrus dressing. The lighting is bright and natural, shot in a minimalist studio setting with a clean white marble background. The colors are vibrant and appetizing, reflecting a fresh, healthy dining aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxVQ22XlGk6QiKxlgV__BlPyr6TLJ2AGWuBLNU1naWcPv2fadq9sBvTik31Mtb6dns4YwX8nC2DsnfdAhrCz_IhsrBWFZ-MxtNOptWNtFvNxWmJKwgLscQ80nHgfqyrqYKnIzBwR9XGskcJ1xFdz5HOyy8RMx1wGge7Y9fasX27isgFsJf91KguGML15m96_3MZW1b3gwIkMk2aHf8MuUKj1yDD4o1sCuINrc1AEb17IjW8GThvs0hHUscQO43hLHeAYNqAw1oiIZT"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg">
+<span class="font-label-sm text-primary">$14.50</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<h3 class="font-headline-md text-[18px] text-on-surface mb-xs">Avocado Citrus Salad</h3>
+<p class="text-on-surface-variant font-body-md text-sm line-clamp-2">Fresh hass avocado, baby spinach, orange segments, and balsamic glaze.</p>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="item-card bg-white rounded-xl overflow-hidden cursor-pointer flex flex-col group border-t-4 border-action-orange">
+<div class="relative h-40 overflow-hidden">
+<img alt="Grilled Salmon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A masterfully plated grilled salmon fillet with crispy skin, served alongside asparagus and lemon butter sauce. The lighting is dramatic yet soft, highlighting the textures of the fish on a charcoal-colored ceramic plate. The overall mood is sophisticated and elegant, suitable for a high-end gourmet restaurant menu." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ7CDdggbNg1fYE3cPh5_cWqvjww48aJQfNngDAwUFUj-xmI0ZzLS7s_8sWMJy6BtuqiBxgEPJNGoMsLjmruTnO0T_q9sU5tEJQA5-_7T1vs9XTt6Hz4Ix_RSEbSc6Dcy6mC14fpNRtlLyxTQYoKQKuWITBTwyEJz4dvs5hkai2EfFPDtLqS0HCIf-gLMC_-c_u4QEa7z31MXgxC4CfPNfKeyyUvk17MqdqynP17nQutbL_qpIKKMATb6fPOkJTqp_2YkiAhxXIJ45"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg">
+<span class="font-label-sm text-primary">$28.00</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<h3 class="font-headline-md text-[18px] text-on-surface mb-xs">Wild Atlantic Salmon</h3>
+<p class="text-on-surface-variant font-body-md text-sm line-clamp-2">Sustainably sourced salmon, herb crust, lemon-butter reduction.</p>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="item-card bg-white rounded-xl overflow-hidden cursor-pointer flex flex-col group">
+<div class="relative h-40 overflow-hidden">
+<img alt="Steak Frites" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Sizzling prime ribeye steak sliced on a rustic wooden board, accompanied by golden crispy fries and a side of peppercorn sauce. Warm, ambient lighting creates deep shadows and glowing highlights on the juicy meat. The visual style is rich and comforting, conveying the high quality of a premium steakhouse experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA65pWCJabPR5MEHUgsr2as9g-Ll84eD4VDLJPYKLm5gJ9KnsIvg-kDDwEW4xRQOshsub0kY_OsUWi0THjYjlFllItRC6iMMN4jXjwlqW-Fih9dr7x8hhNsZfA34pDFgiOfjmGuokiBakQd49_9-h1YGaCdBIgH5l7Vc74sG3lRDbfVWR_vH0mWjSiIekgP2Zxgjaahpfz6Rs5pGKaPNniUL6VcSZ2o7wYZOgkG4-YsJJDDB-vYFGy4lj9zjkFn97hs-ewoFPCAAmv2"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg">
+<span class="font-label-sm text-primary">$34.00</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<h3 class="font-headline-md text-[18px] text-on-surface mb-xs">Prime Ribeye Steak</h3>
+<p class="text-on-surface-variant font-body-md text-sm line-clamp-2">12oz grass-fed ribeye, hand-cut frites, truffle aioli.</p>
+</div>
+</div>
+<!-- Item Card 4 -->
+<div class="item-card bg-white rounded-xl overflow-hidden cursor-pointer flex flex-col group">
+<div class="relative h-40 overflow-hidden">
+<img alt="Artisan Pizza" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A gourmet wood-fired pizza with buffalo mozzarella, fresh basil, and San Marzano tomatoes. The crust is perfectly charred, and the light reflects off the melted cheese. Shot from a top-down angle on a rustic wooden table with scattered flour and ingredients, creating an authentic, artisan Italian culinary atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR6o6koVP61yJL16PEFje93G8oKvn7P1yhusDF63bVjwEBX8_p1lFjoSQHRIOhU7RLH2Cfhh9jP5NIInPtf1YXq63xUm-s6Tyz344lwXdCudjZ3nRUA9SaSHvsS6B-MfdHK26KYAEodnS1f8tl1BnppUSKhJvKiNFDOoy3yRdDqPa63x9fj_2DNQJ1a0hDJl-FrtsvQQQbYnzh2pg1XHplxt9H9I0DJOctu2KF0UfSL9kqScBSBmloYDjBlywOWAaFFrJvsBbZA2Bw"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg">
+<span class="font-label-sm text-primary">$18.50</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<h3 class="font-headline-md text-[18px] text-on-surface mb-xs">Margherita Verace</h3>
+<p class="text-on-surface-variant font-body-md text-sm line-clamp-2">San Marzano DOP, buffalo mozzarella, fresh basil, extra virgin olive oil.</p>
+</div>
+</div>
+<!-- More items to fill the grid -->
+<div class="item-card bg-white rounded-xl overflow-hidden cursor-pointer flex flex-col group">
+<div class="relative h-40 overflow-hidden">
+<img alt="Chocolate Souffle" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A decadent dark chocolate souffle with a molten center, dusted with powdered sugar and garnished with a single fresh raspberry. The setting is intimate, with soft candlelight in the background creating a luxurious dessert experience. The focus is sharp on the texture of the cake, with a shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Rg23m6my0a8MY1aIPEnAwfdclKgEO3ClC_tyLa_qtyMHDYESwf9fHk00UoVQyySl9pFTDn1eG0glLsq7YXfZevipd5jhQkxPSXm9OjbSqd7uX_zHrab_6LdMFfV-hmwaBIhbQVEzX-ruDimENBGNNf0o88fU0y0X7R4oeQzUzhQvMtgF95IdxC3yiVAtBY6GB1ZhoQngiP0BGrqP-NvK_zjqVXSl3rkpyU0i6obOzru520pOQCwMAa7lHr1UimDesfAXvp_jz54T"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg">
+<span class="font-label-sm text-primary">$12.00</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<h3 class="font-headline-md text-[18px] text-on-surface mb-xs">Molten Lava Cake</h3>
+<p class="text-on-surface-variant font-body-md text-sm line-clamp-2">70% Valrhona chocolate, Tahitian vanilla bean gelato.</p>
+</div>
+</div>
+<div class="item-card bg-white rounded-xl overflow-hidden cursor-pointer flex flex-col group">
+<div class="relative h-40 overflow-hidden">
+<img alt="Cocktail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sophisticated craft cocktail in a crystal coupe glass, garnished with a sprig of rosemary and an orange twist. The drink is vibrant and translucent, set against a dark, moody bar background with sparkling glassware. The lighting is focused and cinematic, emphasizing the elegance and craftsmanship of the beverage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCliG9iAUeR1urFsKlhDxHy3pACyCgnwD2cwnYkhzRlvVu7NocFM9Cm6omTf3ZNmby0WLd-hTnwW_MyOYc5zqdG1u4bZZKQlK8sQdG2rDigOabKCFTGbPuyUq5b0soLQ7fPSQV0HaJDEwi7i9YktiajIGDZKI9Les5VLrN9fa2HZEdy6_DMKJsAUE--ewBdvdigXalfSESiOMg9xFFnwVuzMB9a316FjKKVCCAYQUwgnmnNbZkuDFwpW08okugfl-tiK_IU5F_efxMv"/>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg">
+<span class="font-label-sm text-primary">$16.00</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<h3 class="font-headline-md text-[18px] text-on-surface mb-xs">Gourmet Old Fashioned</h3>
+<p class="text-on-surface-variant font-body-md text-sm line-clamp-2">Barrel-aged bourbon, house-made bitters, smoked orange zest.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Sidebar: Current Order -->
+<aside class="glass-panel w-96 h-screen fixed right-0 top-0 z-50 flex flex-col p-lg">
+<div class="flex justify-between items-center mb-lg">
+<div>
+<h2 class="font-headline-md text-on-surface">Current Order</h2>
+<p class="font-label-md text-on-surface-variant">Table 12 • Server: Alex</p>
+</div>
+<button class="p-2 hover:bg-error/10 text-error rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="delete_sweep">delete_sweep</span>
+</button>
+</div>
+<!-- Order Items Scrollable -->
+<div class="flex-1 overflow-y-auto no-scrollbar space-y-md mb-lg">
+<!-- Order Item 1 -->
+<div class="flex items-center gap-md p-md bg-white/40 rounded-xl border border-white/50">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Grilled Salmon Thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-AzuVWQTEhFF9SQoLYW3qoBhCz-q9UohL59JaP51gGyeKRRHtrsmJFbJq7abTJ9K9rjhZu3tnHpo8bYqGaoOMLJyEPteq9mGIWUPSh3DeoYXSpnaFeIB1SU0WL57-9FCysXERycDLogVrYke2Th6XJ232ZJZhB3tAmRSY0OCGoxWyep3Qr3VzckrJf7K4tTQMIv34RF0HRst-xMCPcMfH-OKzR5uEzwg0eIStPytnS1SR7_yePJ5AeGEMy3nmQgNy0w3HkKouxhy3"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-on-surface">Wild Atlantic Salmon</h4>
+<p class="text-on-surface-variant text-xs mb-1">Medium Rare • Extra Lemon</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-sm text-primary">$28.00</span>
+<div class="flex items-center gap-2">
+<button class="w-7 h-7 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-label-md w-4 text-center">1</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="flex items-center gap-md p-md bg-white/40 rounded-xl border border-white/50">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Salad Thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADSaetwySTjtO7O_AcJ9hPiFe-Feq8Ie4JIyysYHkeOOCS0f1L9pCftWY_Vdc_PlQn-Y-Yb4CYo56mI4cdaBvYVLo5h1q3KMgdorcjqwkQI6QeF5QSJvMJ3rC8neRagQ8bm7-8jY5EZbyejQ3pTR21vS9wzO0on9mZIigymapkHvdRHv4KT3jScN4rEi6eBsEmzWj6YqYgF0ECaJVxq_zGd7NSxw8i64y75FAFdhTRpe5eAAu4JzVqhs0Z_N2LFY6lr-xAiPrNFnfY"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-on-surface">Avocado Citrus Salad</h4>
+<p class="text-on-surface-variant text-xs mb-1">No dressing on side</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-sm text-primary">$29.00</span>
+<div class="flex items-center gap-2">
+<button class="w-7 h-7 flex items-center justify-center rounded-full bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-label-md w-4 text-center">2</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary & Checkout -->
+<div class="space-y-sm pt-md border-t border-outline-variant">
+<div class="flex justify-between items-center text-on-surface-variant font-body-md">
+<span>Subtotal</span>
+<span>$57.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-md">
+<span>Tax (8.5%)</span>
+<span>$4.85</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-md">
+<span>Service Fee</span>
+<span>$2.50</span>
+</div>
+<div class="flex justify-between items-center text-on-surface mt-2">
+<span class="font-headline-md text-xl">Total</span>
+<span class="font-price-display text-2xl text-primary">$64.35</span>
+</div>
+<div class="grid grid-cols-2 gap-md mt-lg">
+<button class="py-4 border border-outline-variant text-on-surface-variant font-label-md rounded-xl hover:bg-surface-container-high transition-all active:scale-95">
+                    Save Order
+                </button>
+<button class="py-4 bg-action-orange text-white font-label-md rounded-xl shadow-lg shadow-orange-500/30 hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    Pay Now
+                </button>
+</div>
+</div>
+</aside>
+</body></html>

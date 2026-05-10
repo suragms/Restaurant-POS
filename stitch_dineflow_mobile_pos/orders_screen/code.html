@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>CravePOS - Orders Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#111c2d",
+                        "secondary-fixed": "#d8e3fb",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-primary-container": "#5f1900",
+                        "surface-container-high": "#fde3db",
+                        "inverse-on-surface": "#ffede8",
+                        "on-surface-variant": "#594139",
+                        "secondary-container": "#d5e0f8",
+                        "primary-fixed-dim": "#ffb59d",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#832600",
+                        "secondary": "#545f73",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#ab3500",
+                        "primary": "#ab3500",
+                        "on-primary-fixed": "#390c00",
+                        "surface-container": "#ffe9e3",
+                        "on-background": "#261814",
+                        "on-tertiary-container": "#003744",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#00a7cb",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#fff1ed",
+                        "on-error-container": "#93000a",
+                        "background": "#fff8f6",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "outline": "#8d7168",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "on-surface": "#261814",
+                        "on-secondary-container": "#586377",
+                        "inverse-primary": "#ffb59d",
+                        "outline-variant": "#e1bfb5",
+                        "surface-container-highest": "#f7ddd5",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#f7ddd5",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdbd0",
+                        "primary-container": "#ff6b35",
+                        "inverse-surface": "#3c2d28",
+                        "tertiary": "#00677e",
+                        "surface-dim": "#eed5cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "safe-area": "20px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter": "12px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "price-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "price-lg": ["24px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl docked full-width top-0 z-40 border-b border-outline-variant/30 shadow-sm sticky">
+<div class="flex justify-between items-center w-full px-safe-area h-16">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-highest/50 p-sm rounded-full transition-colors active:scale-95">menu</button>
+<h1 class="font-display-lg text-display-lg text-primary dark:text-primary-fixed-dim tracking-tight">CravePOS</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-highest/50 p-sm rounded-full transition-colors active:scale-95">notifications</button>
+</div>
+</div>
+</header>
+<main class="px-safe-area pt-lg">
+<!-- Search and Filters -->
+<div class="mb-lg flex items-center gap-md">
+<div class="relative flex-grow">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-12 pl-12 pr-md bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-body-md text-on-surface transition-all" placeholder="Search Order ID or Table..." type="text"/>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container rounded-xl text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Tab Navigation -->
+<div class="flex gap-sm mb-lg border-b border-outline-variant/20">
+<button class="pb-md px-md text-title-sm font-title-sm border-b-2 border-primary text-primary transition-all">Active</button>
+<button class="pb-md px-md text-title-sm font-title-sm text-on-surface-variant hover:text-on-surface transition-all">Past</button>
+<button class="pb-md px-md text-title-sm font-title-sm text-on-surface-variant hover:text-on-surface transition-all">Cancelled</button>
+</div>
+<!-- Orders Grid (Bento Style Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Order Card 1: Cooking -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">ORDER #8842</p>
+<h3 class="font-title-sm text-title-sm mt-xs">Table 12</h3>
+</div>
+<span class="px-sm py-xs bg-tertiary-container text-on-tertiary-container rounded-full text-label-caps font-label-caps">COOKING</span>
+</div>
+<div class="space-y-sm mb-md">
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">2x Wagyu Burger</span>
+<span class="font-bold text-on-surface">$56.00</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">1x Truffle Fries</span>
+<span class="font-bold text-on-surface">$14.00</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-md border-t border-outline-variant/10">
+<div class="flex items-center gap-xs text-error">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-label-caps">14m elapsed</span>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Total</p>
+<p class="font-price-lg text-price-lg text-primary">$70.00</p>
+</div>
+</div>
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+</div>
+<!-- Order Card 2: Ready -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">ORDER #8845</p>
+<h3 class="font-title-sm text-title-sm mt-xs">Table 04</h3>
+</div>
+<span class="px-sm py-xs bg-primary-container text-on-primary-container rounded-full text-label-caps font-label-caps">READY</span>
+</div>
+<div class="space-y-sm mb-md">
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">1x Lobster Pasta</span>
+<span class="font-bold text-on-surface">$42.00</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">1x Pinot Noir</span>
+<span class="font-bold text-on-surface">$18.00</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-md border-t border-outline-variant/10">
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-caps text-label-caps">28m elapsed</span>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Total</p>
+<p class="font-price-lg text-price-lg text-primary">$60.00</p>
+</div>
+</div>
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary-container scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+</div>
+<!-- Order Card 3: New Order / Pending (Asymmetric highlight) -->
+<div class="bg-primary/5 border-2 border-primary/20 border-dashed rounded-xl p-md flex flex-col items-center justify-center text-center gap-sm min-h-[180px]">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<p class="font-title-sm text-title-sm text-primary">Create New Order</p>
+<p class="text-body-sm text-on-surface-variant px-lg">Quickly add items for walk-ins or phone orders</p>
+</div>
+<!-- Order Card 4: Delivered (Recently) -->
+<div class="bg-surface-container-low border border-outline-variant/10 rounded-xl p-md shadow-sm opacity-80">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">ORDER #8839</p>
+<h3 class="font-title-sm text-title-sm mt-xs">Table 08</h3>
+</div>
+<span class="px-sm py-xs bg-secondary-container text-on-secondary-container rounded-full text-label-caps font-label-caps">DELIVERED</span>
+</div>
+<div class="space-y-sm mb-md">
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">3x Margherita Pizza</span>
+<span class="font-bold text-on-surface">$45.00</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-md border-t border-outline-variant/10">
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-label-caps text-label-caps">Closed 5m ago</span>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Total</p>
+<p class="font-price-lg text-price-lg text-on-surface-variant">$45.00</p>
+</div>
+</div>
+</div>
+<!-- Order Card 5: Large Order -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md shadow-sm hover:shadow-md transition-shadow relative md:col-span-2">
+<div class="flex flex-col md:flex-row justify-between md:items-center mb-md gap-sm">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">ORDER #8848 • TABLE 21</p>
+<h3 class="font-headline-md text-headline-md text-primary">VIP Party - Balcony</h3>
+</div>
+<div class="flex gap-sm">
+<span class="px-sm py-xs bg-tertiary-container text-on-tertiary-container rounded-full text-label-caps font-label-caps self-start">COOKING</span>
+<span class="px-sm py-xs bg-error-container text-on-error-container rounded-full text-label-caps font-label-caps self-start">RUSH</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-xl gap-y-xs mb-md border-y border-outline-variant/10 py-md">
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">6x Ribeye Steak (Med-Rare)</span>
+<span class="font-bold text-on-surface">$228.00</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">2x Seafood Platter</span>
+<span class="font-bold text-on-surface">$190.00</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">3x Cabernet Sauvignon</span>
+<span class="font-bold text-on-surface">$270.00</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">1x Seasonal Salad Bowl</span>
+<span class="font-bold text-on-surface">$18.00</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs text-error">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+<span class="font-label-caps text-label-caps">08m elapsed</span>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="font-label-caps text-label-caps">12 Guests</span>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Total Bill</p>
+<p class="font-display-lg text-display-lg text-primary">$706.00</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-6 w-16 h-16 bg-primary-container text-on-primary-container rounded-full shadow-[0_8px_24px_rgba(171,53,0,0.4)] flex items-center justify-center active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full glass-panel flex justify-around items-center px-4 pt-2 pb-safe-area h-20 border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(30,41,59,0.08)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">table_restaurant</span>
+<span class="font-label-caps text-label-caps">Tables</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-caps text-label-caps">Billing</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</nav>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden opacity-30">
+<div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary-container/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-tertiary-container/10 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

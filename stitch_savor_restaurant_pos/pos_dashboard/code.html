@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.03);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "on-primary-fixed": "#22005d",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "primary": "#4f378a",
+                        "outline": "#7a7582",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e6e0e9",
+                        "surface-container-high": "#ece6ee",
+                        "inverse-primary": "#cfbcff",
+                        "outline-variant": "#cbc4d2",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "inverse-surface": "#322f35",
+                        "secondary-container": "#e1d4fd",
+                        "on-secondary-container": "#645a7d",
+                        "on-tertiary-container": "#503d00",
+                        "surface-container": "#f2ecf4",
+                        "surface-dim": "#ded8e0",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#e9ddff",
+                        "secondary": "#63597c",
+                        "on-secondary-fixed": "#1f1635",
+                        "primary-container": "#6750a4",
+                        "tertiary-container": "#c9a74d",
+                        "tertiary": "#765b00",
+                        "surface-container-low": "#f8f2fa",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fdf7ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "on-surface-variant": "#494551",
+                        "surface-bright": "#fdf7ff",
+                        "background": "#fdf7ff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#6750a4",
+                        "primary-fixed": "#e9ddff",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "on-surface": "#1d1b20",
+                        "primary-fixed-dim": "#cfbcff",
+                        "on-primary-container": "#e0d2ff",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e6e0e9",
+                        "inverse-on-surface": "#f5eff7",
+                        "tertiary-fixed": "#ffdf93",
+                        "on-background": "#1d1b20"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch_target": "44px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "unit": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "price-display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "price-display": ["28px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline shadow-sm flex flex-col p-4 z-50">
+<div class="mb-lg px-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">GourmetPOS</h1>
+<p class="text-label-sm text-on-surface-variant">Main Dining Hall</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg font-bold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors rounded-lg active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span>
+<span class="font-body-md">POS</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors rounded-lg active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="table_restaurant">table_restaurant</span>
+<span class="font-body-md">Tables</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors rounded-lg active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors rounded-lg active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors rounded-lg active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-body-md">Staff</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors rounded-lg active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors rounded-lg active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant">
+<div class="flex items-center gap-3 px-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<img alt="Manager Profile" class="w-full h-full rounded-full object-cover" data-alt="Professional headshot of a restaurant manager in a minimalist office setting. The lighting is bright and warm, with soft daylight coming from a large window. He wears a sharp charcoal suit and maintains a welcoming, confident expression. The background is slightly blurred with clean lines and premium textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5h1Cw2_fPJWOR0fRo5JC6Xjeam_6MHf_JmomQpPbHMfVRvbk9e0-OLdfMvZZ567yfAPA16bZqI8LY01m2Q9_Psp5U0kG9fzDDehvbJ8E06pOXBC7WuAi39AalN1ftQeiqWPv1RrukX9k_Grb5lBPZ6NefaYdk3EToKtxNVl0ODSOPjy8xqLMWEpCi-PtsVFufx4mJ9alS7wJ2ffSxXD0lsrk_ofGDujONKX_IPA4q0WkmZ-ABjWlLoU1pT71ftBVIn6Nf8yK3TDmc"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">Alex Rivera</p>
+<p class="text-label-sm text-on-surface-variant">General Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant dark:border-outline flex justify-between items-center px-lg h-touch_target">
+<div class="flex items-center gap-md flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-label-md focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Search analytics, orders, or items..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm bg-tertiary-container/20 px-3 py-1 rounded-full border border-tertiary-container/30">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-label-sm text-on-tertiary-container font-bold">Restaurant Open</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="wifi_tethering">wifi_tethering</span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 mt-[44px] p-lg min-h-screen">
+<!-- Page Title -->
+<div class="mb-xl flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Analytics Dashboard</h2>
+<p class="text-body-md text-on-surface-variant">Real-time performance overview for GourmetPOS</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-sm bg-surface border border-outline-variant px-4 py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                    Today: Oct 24, 2023
+                </button>
+<button class="flex items-center gap-sm bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                    Export Report
+                </button>
+</div>
+</div>
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl">
+<!-- Total Revenue -->
+<div class="glass-card p-md rounded-xl border-t-4 border-primary">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+</div>
+<span class="text-label-sm px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-bold">+12%</span>
+</div>
+<p class="text-label-md text-on-surface-variant mb-xs">Total Revenue</p>
+<h3 class="text-price-display font-price-display text-on-surface">$12,450.00</h3>
+</div>
+<!-- Orders Today -->
+<div class="glass-card p-md rounded-xl">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-secondary-container/20 rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="shopping_basket">shopping_basket</span>
+</div>
+</div>
+<p class="text-label-md text-on-surface-variant mb-xs">Orders Today</p>
+<h3 class="text-price-display font-price-display text-on-surface">142</h3>
+</div>
+<!-- Active Tables -->
+<div class="glass-card p-md rounded-xl border-t-4 border-tertiary">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-tertiary-container/10 rounded-lg text-tertiary">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+</div>
+<span class="text-label-sm text-on-surface-variant font-medium">75% Capacity</span>
+</div>
+<p class="text-label-md text-on-surface-variant mb-xs">Active Tables</p>
+<h3 class="text-price-display font-price-display text-on-surface">18/24</h3>
+</div>
+<!-- Best-selling -->
+<div class="glass-card p-md rounded-xl overflow-hidden relative">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-surface-container-highest rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+</div>
+</div>
+<p class="text-label-md text-on-surface-variant mb-xs">Best-selling Dish</p>
+<h3 class="text-headline-md font-headline-md text-on-surface truncate">Truffle Pasta</h3>
+</div>
+</div>
+<!-- Revenue Chart Section -->
+<div class="glass-card p-lg rounded-xl mb-xl">
+<div class="flex justify-between items-center mb-lg">
+<h4 class="font-headline-md text-on-surface">Weekly Revenue Growth</h4>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-label-sm text-on-surface-variant">This Week</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm text-on-surface-variant">Last Week</span>
+</div>
+</div>
+</div>
+<!-- Area Chart Visualization (Simulated) -->
+<div class="h-64 w-full relative">
+<div class="absolute inset-0 flex items-end justify-between gap-md px-md">
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[40%] transition-all hover:bg-primary-container">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-label-sm py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">$1.2k</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[65%] transition-all hover:bg-primary-container"></div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[50%] transition-all hover:bg-primary-container"></div>
+<div class="w-full bg-primary rounded-t-lg relative group h-[85%] transition-all hover:opacity-90">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-label-sm py-1 px-2 rounded opacity-100 transition-opacity whitespace-nowrap">$4.8k</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[70%] transition-all hover:bg-primary-container"></div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[55%] transition-all hover:bg-primary-container"></div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[60%] transition-all hover:bg-primary-container"></div>
+</div>
+<div class="absolute bottom-0 w-full h-px bg-outline-variant"></div>
+</div>
+<div class="flex justify-between mt-sm px-md text-label-sm text-on-surface-variant">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<!-- Lower Section Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Recent Transactions -->
+<div class="lg:col-span-2 glass-card rounded-xl flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h4 class="font-headline-md text-on-surface">Recent Transactions</h4>
+<button class="text-primary font-label-md hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="px-lg py-md font-bold">Transaction ID</th>
+<th class="px-lg py-md font-bold">Order Details</th>
+<th class="px-lg py-md font-bold">Status</th>
+<th class="px-lg py-md font-bold text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-label-md">#GP-8842</td>
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="text-body-md font-medium">Table 04 — Dine-in</span>
+<span class="text-label-sm text-on-surface-variant">4 items • 12:45 PM</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-bold bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Successful
+                                    </span>
+</td>
+<td class="px-lg py-md text-right font-bold text-price-display text-[18px]">$154.20</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-label-md">#GP-8841</td>
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="text-body-md font-medium">Takeaway — App Order</span>
+<span class="text-label-sm text-on-surface-variant">2 items • 12:38 PM</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-bold bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Successful
+                                    </span>
+</td>
+<td class="px-lg py-md text-right font-bold text-price-display text-[18px]">$42.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-label-md">#GP-8840</td>
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="text-body-md font-medium">Table 12 — Dine-in</span>
+<span class="text-label-sm text-on-surface-variant">6 items • 12:15 PM</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-bold bg-tertiary-container/30 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Pending
+                                    </span>
+</td>
+<td class="px-lg py-md text-right font-bold text-price-display text-[18px]">$312.45</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Live Restaurant Activity -->
+<div class="glass-card rounded-xl flex flex-col">
+<div class="p-lg border-b border-outline-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<h4 class="font-headline-md text-on-surface">Live Activity</h4>
+</div>
+<div class="p-lg space-y-lg overflow-y-auto max-h-[400px]">
+<div class="flex gap-md">
+<div class="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></div>
+<div>
+<p class="text-body-md font-medium text-on-surface">Order #8842 Ready</p>
+<p class="text-label-md text-on-surface-variant">Truffle Pasta &amp; Sea Bass are ready to serve for Table 04.</p>
+<p class="text-label-sm text-primary font-bold mt-1">2 mins ago</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-2 h-2 mt-2 rounded-full bg-secondary flex-shrink-0"></div>
+<div>
+<p class="text-body-md font-medium text-on-surface">New Reservation</p>
+<p class="text-label-md text-on-surface-variant">Dr. Miller — Table for 4 at 7:30 PM tonight.</p>
+<p class="text-label-sm text-on-surface-variant font-medium mt-1">15 mins ago</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-2 h-2 mt-2 rounded-full bg-error flex-shrink-0"></div>
+<div>
+<p class="text-body-md font-medium text-on-surface">Low Stock Alert</p>
+<p class="text-label-md text-on-surface-variant">Fresh Salmon inventory is below 15% threshold.</p>
+<p class="text-label-sm text-error font-bold mt-1">45 mins ago</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></div>
+<div>
+<p class="text-body-md font-medium text-on-surface">Shift Started</p>
+<p class="text-label-md text-on-surface-variant">Head Chef Maria and 4 kitchen staff clocked in.</p>
+<p class="text-label-sm text-on-surface-variant font-medium mt-1">1 hour ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

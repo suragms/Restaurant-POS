@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>CravePOS - Table Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Shared Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#111c2d",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#b5ebff",
+                    "on-primary-container": "#5f1900",
+                    "surface-container-high": "#fde3db",
+                    "inverse-on-surface": "#ffede8",
+                    "on-surface-variant": "#594139",
+                    "secondary-container": "#d5e0f8",
+                    "primary-fixed-dim": "#ffb59d",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#832600",
+                    "secondary": "#545f73",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#ab3500",
+                    "primary": "#ab3500",
+                    "on-primary-fixed": "#390c00",
+                    "surface-container": "#ffe9e3",
+                    "on-background": "#261814",
+                    "on-tertiary-container": "#003744",
+                    "surface": "#fff8f6",
+                    "tertiary-container": "#00a7cb",
+                    "surface-bright": "#fff8f6",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#fff1ed",
+                    "on-error-container": "#93000a",
+                    "background": "#fff8f6",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "outline": "#8d7168",
+                    "tertiary-fixed-dim": "#59d5fb",
+                    "on-surface": "#261814",
+                    "on-secondary-container": "#586377",
+                    "inverse-primary": "#ffb59d",
+                    "outline-variant": "#e1bfb5",
+                    "surface-container-highest": "#f7ddd5",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#f7ddd5",
+                    "on-tertiary-fixed-variant": "#004e60",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#ffdbd0",
+                    "primary-container": "#ff6b35",
+                    "inverse-surface": "#3c2d28",
+                    "tertiary": "#00677e",
+                    "surface-dim": "#eed5cd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "safe-area": "20px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "base": "4px",
+                    "gutter": "12px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "title-sm": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-caps": ["Inter"],
+                    "price-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "price-lg": ["24px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(171, 53, 0, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl docked full-width top-0 z-40 border-b border-outline-variant/30 shadow-sm sticky">
+<div class="flex justify-between items-center w-full px-safe-area h-16">
+<div class="flex items-center gap-md">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-highest/50 transition-colors active:scale-95 transition-transform duration-200 p-sm rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-primary dark:text-primary-fixed-dim tracking-tight">CravePOS</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-highest/50 transition-colors active:scale-95 transition-transform duration-200 p-sm rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary/20 p-xs">
+<img alt="Manager Profile" class="rounded-full w-full h-full bg-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgPFNZHxPlIVh4H2czJWiXGKxSXBkPCc6FcLggB3ga6NAyZQTGMjAA2bo3KA0_Lv3A2YCS7_UAlipIlkYLBjexCzHPSwDfCfEYgUmhcERwbVEg6DYueKpF4WL40zBZyzn0YguiZ5VvOlrUpsYHvpb0t47QHHFifOoCebRWhisExSxRDoxspfGwwEBjY8WlitYJw2fkeN_fN4-D5wGk13Y4BwX1h-5idUe_gWuc4SXkNuv9-MSTg2tILOg70_YCuuKOKX2woYzyRo35"/>
+</div>
+</div>
+</div>
+</header>
+<main class="px-safe-area pt-lg space-y-lg">
+<!-- Section Header -->
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Main Dining Room</p>
+<h2 class="font-headline-md text-headline-md text-on-surface">Floor Plan</h2>
+</div>
+<div class="flex gap-xs bg-surface-container-low p-xs rounded-xl border border-outline-variant/20">
+<span class="px-md py-xs bg-primary-container text-on-primary-container rounded-lg font-label-caps text-label-caps">INDOR</span>
+<span class="px-md py-xs text-secondary font-label-caps text-label-caps">PATIO</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex gap-md overflow-x-auto pb-xs">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+<span class="font-label-caps text-label-caps text-secondary">AVAILABLE</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="font-label-caps text-label-caps text-secondary">OCCUPIED</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-orange-400"></span>
+<span class="font-label-caps text-label-caps text-secondary">PENDING</span>
+</div>
+</div>
+<!-- Table Grid (Bento Style) -->
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-gutter">
+<!-- Table 01 - Occupied -->
+<div class="glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between aspect-square active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-error/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-display-lg text-display-lg text-on-surface">01</span>
+<span class="px-sm py-xs bg-error text-white text-[10px] font-bold rounded-full">OCCUPIED</span>
+</div>
+<div class="space-y-xs z-10">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span class="font-body-sm text-body-sm">4/4 Guests</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-on-secondary-container">person</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Chef Mario</span>
+</div>
+</div>
+</div>
+<!-- Table 02 - Available -->
+<div class="glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between aspect-square active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-emerald-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-display-lg text-display-lg text-on-surface">02</span>
+<span class="px-sm py-xs bg-emerald-500 text-white text-[10px] font-bold rounded-full">AVAILABLE</span>
+</div>
+<div class="space-y-xs z-10">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span class="font-body-sm text-body-sm">0/2 Guests</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline italic">Unassigned</span>
+</div>
+</div>
+<!-- Table 03 - Pending -->
+<div class="glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between aspect-square active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-orange-400/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-display-lg text-display-lg text-on-surface">03</span>
+<span class="px-sm py-xs bg-orange-400 text-white text-[10px] font-bold rounded-full">PENDING</span>
+</div>
+<div class="space-y-xs z-10">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+<span class="font-body-sm text-body-sm">Billing...</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-on-secondary-container">person</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Waiter Ben</span>
+</div>
+</div>
+</div>
+<!-- Table 04 - Large Table -->
+<div class="col-span-2 glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group bg-gradient-to-br from-surface-container-low to-white">
+<div class="absolute top-0 right-0 w-24 h-24 bg-error/5 rounded-bl-full -mr-6 -mt-6"></div>
+<div class="flex justify-between items-start">
+<div>
+<span class="font-display-lg text-display-lg text-on-surface">04</span>
+<p class="font-label-caps text-label-caps text-secondary">VIP BOOTH</p>
+</div>
+<span class="px-md py-xs bg-error text-white text-[10px] font-bold rounded-full">IN SERVICE</span>
+</div>
+<div class="flex justify-between items-end mt-xl">
+<div class="flex -space-x-2">
+<img alt="Guest 1" class="w-8 h-8 rounded-full border-2 border-white bg-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFvWWW048Fl2QTp7cGuUvU3FuIE-9MzJZx-Mq2ruJehaPRzYk-EfQhQOlwbS4yrZR1f0CkTPKUuLCsrnh408UQGEtxUqvHvwXV_xcWBgBpki45ywdVLUJrsNWPfB360aqG7AbEWHAgzdDOnGVG_JrshsJt5eJj220D6kQACv9EVKTJlFvr6D3JP02ZX6VGLVgDvg7T-pDZJ1H2usvCGNQN7TaqZJarG3GORhpTroHoHWwpKCo-mfnMMdmG_l9kCayoGREdZLOfVsIN"/>
+<img alt="Guest 2" class="w-8 h-8 rounded-full border-2 border-white bg-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3rhDgGgdgv_KLj3TaVGo5gHnDLGDSSoYU_S0OmjYOO2lXN1NAn4U3jK6Bv0PPMpFRZU-GmHR13E1m4FXuu6L8kYP9q1ufBCxz5PNuajiLcsKSwN5zkbjfsL-IsANkKsdXMs0JW6_UPDybASh4_mhJ4j17m8WARfit0RcSJ6c-hQ78GLFhnin-OETnKQLjhoLSijjqwaZ0Yvsq-b698vDGSXvsn-bBgFF34y4LdH_0fJGm18Mtqte7vuuChofZTuKexNw73dVViADJ"/>
+<img alt="Guest 3" class="w-8 h-8 rounded-full border-2 border-white bg-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOU2WScsaUvsgTtjLv0pbbHhqiIHmFMBiJCwvslNmEUFiRrllETyTJe2OCyeLCMaj2lG9gRW7RsjFYbZWEiuEbuUB2HqGvrQUdxiIu5bOKicBA8TeJz6gBGPogQmoGroVyId9ufakUkuDFHtpedkNPqC85qY_oqJqzBPQEy8ZWku0I3JYE6NxzgK42kxWSC-qEfgGbiE1bpgdUaCnJuyNZVXrDAM9G_WN9ULNpBhqaDk1PnUGlm0y0usnFDS5ZSmXj5y_kPj1guoRw"/>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest flex items-center justify-center font-label-caps text-label-caps text-[10px]">+5</div>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-secondary">TOTAL</p>
+<p class="font-price-lg text-price-lg text-primary">$412.50</p>
+</div>
+</div>
+</div>
+<!-- Table 05 - Available -->
+<div class="glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between aspect-square active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-emerald-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex justify-between items-start">
+<span class="font-display-lg text-display-lg text-on-surface">05</span>
+<span class="px-sm py-xs bg-emerald-500 text-white text-[10px] font-bold rounded-full">OPEN</span>
+</div>
+<div class="space-y-xs">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span class="font-body-sm text-body-sm">0/6 Guests</span>
+</div>
+</div>
+</div>
+<!-- Table 06 - Occupied -->
+<div class="glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between aspect-square active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-error/10 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex justify-between items-start">
+<span class="font-display-lg text-display-lg text-on-surface">06</span>
+<span class="px-sm py-xs bg-error text-white text-[10px] font-bold rounded-full">BUSY</span>
+</div>
+<div class="space-y-xs">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span class="font-body-sm text-body-sm">2/2 Guests</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-on-secondary-container">person</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Lina S.</span>
+</div>
+</div>
+</div>
+<!-- Table 07 - Pending -->
+<div class="glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between aspect-square active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-orange-400/10 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex justify-between items-start">
+<span class="font-display-lg text-display-lg text-on-surface">07</span>
+<span class="px-sm py-xs bg-orange-400 text-white text-[10px] font-bold rounded-full">WAIT</span>
+</div>
+<div class="space-y-xs">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+<span class="font-body-sm text-body-sm">12m Left</span>
+</div>
+</div>
+</div>
+<!-- Table 08 - Available -->
+<div class="glass-card rounded-xl border border-outline-variant/30 p-md flex flex-col justify-between aspect-square active:scale-95 transition-all duration-200 cursor-pointer shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-emerald-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex justify-between items-start">
+<span class="font-display-lg text-display-lg text-on-surface">08</span>
+<span class="px-sm py-xs bg-emerald-500 text-white text-[10px] font-bold rounded-full">OPEN</span>
+</div>
+<div class="space-y-xs">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span class="font-body-sm text-body-sm">0/4 Guests</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Summary Glass Panel -->
+<section class="mt-xl glass-card rounded-2xl border border-outline-variant/20 p-lg shadow-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex items-center justify-between mb-md">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary p-sm bg-primary-container rounded-lg">analytics</span>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Daily Pulse</h3>
+<p class="font-body-sm text-body-sm text-secondary">Snapshot of current floor activity</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-md">
+<div class="bg-surface-container-low p-md rounded-xl">
+<p class="font-label-caps text-label-caps text-secondary mb-xs">TURNOVER</p>
+<p class="font-price-lg text-price-lg text-on-surface">2.4<span class="text-sm font-normal text-secondary ml-xs">/hr</span></p>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl">
+<p class="font-label-caps text-label-caps text-secondary mb-xs">LIVE TOTAL</p>
+<p class="font-price-lg text-price-lg text-on-surface">$1,248</p>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl">
+<p class="font-label-caps text-label-caps text-secondary mb-xs">WAIT LIST</p>
+<p class="font-price-lg text-price-lg text-on-surface">08<span class="text-sm font-normal text-secondary ml-xs">min</span></p>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB for manual table assignment -->
+<button class="fixed bottom-24 right-6 w-16 h-16 bg-gradient-to-br from-primary-container to-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-all duration-150 z-[60]">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-2xl docked full-width bottom-0 z-50 rounded-t-xl border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(30,41,59,0.08)] fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-safe-area h-20">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150 cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold active:scale-90 transition-all duration-150 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">table_restaurant</span>
+<span class="font-label-caps text-label-caps mt-1">Tables</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150 cursor-pointer relative -top-4">
+<div class="bg-primary p-3 rounded-full shadow-lg text-white">
+<span class="material-symbols-outlined text-[32px]">add_circle</span>
+</div>
+<span class="font-label-caps text-label-caps mt-1">Billing</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150 cursor-pointer">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-caps text-label-caps mt-1">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim opacity-70 hover:text-primary-container dark:hover:text-primary-fixed active:scale-90 transition-all duration-150 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps mt-1">Settings</span>
+</div>
+</nav>
+<!-- Visual Enhancements / Background Blobs -->
+<div class="fixed top-20 right-[-10%] w-[50%] h-[40%] bg-primary/5 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+<div class="fixed bottom-0 left-[-10%] w-[60%] h-[40%] bg-secondary/5 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+</body></html>

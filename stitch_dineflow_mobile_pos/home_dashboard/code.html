@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>CravePOS - Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .scrolling-touch {
+            -webkit-overflow-scrolling: touch;
+        }
+        body {
+            background-color: #fff8f6;
+            color: #261814;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#111c2d",
+                        "secondary-fixed": "#d8e3fb",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-primary-container": "#5f1900",
+                        "surface-container-high": "#fde3db",
+                        "inverse-on-surface": "#ffede8",
+                        "on-surface-variant": "#594139",
+                        "secondary-container": "#d5e0f8",
+                        "primary-fixed-dim": "#ffb59d",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#832600",
+                        "secondary": "#545f73",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#ab3500",
+                        "primary": "#ab3500",
+                        "on-primary-fixed": "#390c00",
+                        "surface-container": "#ffe9e3",
+                        "on-background": "#261814",
+                        "on-tertiary-container": "#003744",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#00a7cb",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#fff1ed",
+                        "on-error-container": "#93000a",
+                        "background": "#fff8f6",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "outline": "#8d7168",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "on-surface": "#261814",
+                        "on-secondary-container": "#586377",
+                        "inverse-primary": "#ffb59d",
+                        "outline-variant": "#e1bfb5",
+                        "surface-container-highest": "#f7ddd5",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#f7ddd5",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdbd0",
+                        "primary-container": "#ff6b35",
+                        "inverse-surface": "#3c2d28",
+                        "tertiary": "#00677e",
+                        "surface-dim": "#eed5cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "safe-area": "20px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter": "12px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "price-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "price-lg": ["24px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface antialiased pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm docked full-width top-0 z-40 fixed w-full h-16 flex justify-between items-center px-safe-area">
+<div class="flex items-center gap-md">
+<button class="text-primary hover:bg-surface-container-highest/50 active:scale-95 transition-all p-sm rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">CravePOS</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:bg-surface-container-highest/50 active:scale-95 transition-all p-sm rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container overflow-hidden">
+<img alt="Chef de Cuisine" class="w-full h-full object-cover" data-alt="A professional headshot of a chef in a crisp white culinary uniform with a black apron. The lighting is soft and professional, set in a modern, brightly lit commercial kitchen environment. The chef has a confident and friendly expression, embodying the brand's reliable and energetic personality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi8W9VyqeRS0TJp6wUuWtmdi-wRGN5oLu0mBVH8_jx6l-KJxTBH1iDnVc_uw2Q5KKFg-AF5rUue9lbS236J4jsYUUXpCUnAIrkwQXgcp1ljamXIV4gbNSop945d_CXzmJNIrX3rNlZgc2Zgu2AtJI3XmAU47_MX2qVsq9-9u38MdPNPzEO0gIE8g9ma0NKH5yFJee8q-nYNJZ5lozwgrYAq0vJq2x44BFg05jxzgtxwpVt6b_gvIO-Nqg67o2-Rjooeo0KihzuvZjf"/>
+</div>
+</div>
+</header>
+<main class="pt-20 px-safe-area space-y-lg">
+<!-- Welcome Section -->
+<section class="mt-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant">MONDAY, OCTOBER 23</p>
+<h2 class="font-headline-md text-headline-md text-primary">Good Morning, Chef</h2>
+</section>
+<!-- Bento Grid Stats -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Today's Sales -->
+<div class="col-span-2 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md shadow-sm flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">TODAY'S SALES</p>
+<p class="font-price-lg text-price-lg text-primary">$4,820.50</p>
+</div>
+<div class="bg-primary/10 p-sm rounded-lg">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-tertiary text-sm">trending_up</span>
+<span class="font-label-caps text-label-caps text-tertiary">+12.5% vs yesterday</span>
+</div>
+</div>
+<!-- Active Orders -->
+<div class="col-span-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md shadow-sm flex flex-col justify-between h-40">
+<div class="bg-tertiary-container/20 w-fit p-sm rounded-lg mb-sm">
+<span class="material-symbols-outlined text-tertiary">restaurant</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">ACTIVE</p>
+<p class="font-price-lg text-price-lg">14</p>
+</div>
+</div>
+<!-- Revenue -->
+<div class="col-span-1 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md shadow-sm flex flex-col justify-between h-40">
+<div class="bg-secondary-container/30 w-fit p-sm rounded-lg mb-sm">
+<span class="material-symbols-outlined text-secondary">analytics</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">AVG TICKET</p>
+<p class="font-price-lg text-price-lg">$34.40</p>
+</div>
+</div>
+</section>
+<!-- Analytics Chart Placeholder -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-sm">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-title-sm text-title-sm">Sales Overview</h3>
+<div class="flex gap-sm">
+<span class="px-sm py-xs bg-surface-container rounded font-label-caps text-label-caps">HOURLY</span>
+<span class="px-sm py-xs text-on-surface-variant font-label-caps text-label-caps">DAILY</span>
+</div>
+</div>
+<div class="w-full h-32 relative flex items-end justify-between gap-1 overflow-hidden">
+<!-- Simple SVG Path for Line Chart Simulation -->
+<svg class="absolute inset-0 w-full h-full preserve-3d" viewbox="0 0 400 100">
+<path d="M0,80 Q50,70 100,50 T200,60 T300,20 T400,40" fill="none" stroke="#ab3500" stroke-width="3"></path>
+<path d="M0,80 Q50,70 100,50 T200,60 T300,20 T400,40 V100 H0 Z" fill="url(#grad1)" opacity="0.1"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#ab3500;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#ab3500;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Decorative Bars -->
+<div class="w-1 bg-primary/5 h-20 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-16 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-24 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-28 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-14 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-20 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-32 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-12 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-20 rounded-full"></div>
+<div class="w-1 bg-primary/5 h-26 rounded-full"></div>
+</div>
+</section>
+<!-- Real-time Order Activity Feed -->
+<section class="space-y-md">
+<div class="flex justify-between items-center">
+<h3 class="font-title-sm text-title-sm">Order Activity</h3>
+<button class="text-primary font-label-caps text-label-caps">VIEW ALL</button>
+</div>
+<div class="space-y-sm">
+<!-- Order Card 1 -->
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant/10 active:scale-[0.98] transition-all">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex items-center justify-center font-bold text-primary">
+                        #402
+                    </div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<p class="font-body-md font-bold">Table 12 • 4 Guests</p>
+<p class="font-body-sm text-on-surface-variant">2m ago</p>
+</div>
+<p class="font-body-sm text-on-surface-variant truncate">Burger Deluxe, Truffle Fries, Coke...</p>
+</div>
+<div class="px-sm py-xs bg-tertiary-container/20 text-tertiary rounded-full font-label-caps text-[10px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        PREPARING
+                    </div>
+</div>
+<!-- Order Card 2 -->
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant/10 active:scale-[0.98] transition-all">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex items-center justify-center font-bold text-primary">
+                        #398
+                    </div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<p class="font-body-md font-bold">Takeaway • Smith</p>
+<p class="font-body-sm text-on-surface-variant">8m ago</p>
+</div>
+<p class="font-body-sm text-on-surface-variant truncate">Caesar Salad, Iced Tea</p>
+</div>
+<div class="px-sm py-xs bg-primary-container/20 text-primary rounded-full font-label-caps text-[10px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        READY
+                    </div>
+</div>
+<!-- Order Card 3 -->
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant/10 active:scale-[0.98] transition-all">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex items-center justify-center font-bold text-primary">
+                        #395
+                    </div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<p class="font-body-md font-bold">Table 04 • 2 Guests</p>
+<p class="font-body-sm text-on-surface-variant">15m ago</p>
+</div>
+<p class="font-body-sm text-on-surface-variant truncate">Ribeye Steak, Mashed Potatoes...</p>
+</div>
+<div class="px-sm py-xs bg-secondary-container/50 text-secondary rounded-full font-label-caps text-[10px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        PAID
+                    </div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-safe-area w-16 h-16 bg-primary-container text-on-primary-container rounded-full shadow-xl flex items-center justify-center active:scale-90 transition-all duration-150 z-50">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="bg-surface/80 backdrop-blur-2xl border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(30,41,59,0.08)] fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-safe-area h-20 z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-primary font-bold transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary opacity-70 hover:text-primary-container transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">table_restaurant</span>
+<span class="font-label-caps text-label-caps">Tables</span>
+</a>
+<div class="w-12"></div> <!-- Spacer for FAB visually above or centered if needed -->
+<a class="flex flex-col items-center justify-center text-secondary opacity-70 hover:text-primary-container transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-caps text-label-caps">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary opacity-70 hover:text-primary-container transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</nav>
+</body></html>

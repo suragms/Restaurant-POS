@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Staff Management | GourmetPOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdf7ff",
+                    "secondary-container": "#e1d4fd",
+                    "secondary-fixed": "#e9ddff",
+                    "primary-fixed-dim": "#cfbcff",
+                    "surface-variant": "#e6e0e9",
+                    "on-surface-variant": "#494551",
+                    "surface-bright": "#fdf7ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f2ecf4",
+                    "on-primary-fixed": "#22005d",
+                    "on-secondary-fixed-variant": "#4b4263",
+                    "background": "#fdf7ff",
+                    "secondary": "#63597c",
+                    "on-tertiary-container": "#503d00",
+                    "tertiary-container": "#c9a74d",
+                    "surface-container-high": "#ece6ee",
+                    "on-primary-container": "#e0d2ff",
+                    "tertiary": "#765b00",
+                    "primary-fixed": "#e9ddff",
+                    "surface-tint": "#6750a4",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#cbc4d2",
+                    "surface-container-low": "#f8f2fa",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f5eff7",
+                    "inverse-primary": "#cfbcff",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-surface": "#1d1b20",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#cdc0e9",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdf93",
+                    "on-secondary-fixed": "#1f1635",
+                    "on-secondary-container": "#645a7d",
+                    "tertiary-fixed-dim": "#e7c365",
+                    "on-tertiary-fixed-variant": "#594400",
+                    "primary-container": "#6750a4",
+                    "outline": "#7a7582",
+                    "inverse-surface": "#322f35",
+                    "on-primary-fixed-variant": "#4f378a",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e6e0e9",
+                    "surface-dim": "#ded8e0",
+                    "on-background": "#1d1b20",
+                    "primary": "#4f378a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "touch_target": "44px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "price-display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "price-display": ["28px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fdf7ff; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 4px 12px rgba(30, 41, 59, 0.03); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline h-screen w-64 fixed left-0 top-0 shadow-sm z-50">
+<div class="flex flex-col h-full p-4">
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">restaurant</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary leading-none">GourmetPOS</h1>
+<p class="text-label-sm text-on-surface-variant">Main Dining Hall</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Navigation Items -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span> POS
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="table_restaurant">table_restaurant</span> Tables
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span> Orders
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span> Inventory
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg font-bold active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span> Staff
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span> Reports
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+                </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<div class="flex items-center gap-3 px-2">
+<img alt="Manager Profile" class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a restaurant manager with a confident and warm expression, wearing a tailored charcoal suit in a bright, modern office with soft morning sunlight streaming through large windows. The style is minimalist and high-end, featuring a palette of crisp whites and deep slates to match a professional enterprise software aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXpaLTIvH5YgtTTyV9T_RL8ZPv8L75n3dwr1hFq9nFG0unq5R5W-DcXOHmdWMM1SyW5i_qQeq2WNUtIzWiIQDrtXbxB94wO2X264PgEfgT1UbK-WZBLV4wcJrVGC5wO8-GuIOnD66VyNnkFTmcoOwckcfNWRWq9nXE1GoRNRDiggLiTOwiLGQ5SUUBzvW_tolCLI17sC-PM0ylocF5XaQoNFbh06SRQGieKVCALCKZ8W3L48uEvXeNh_oHOV9qEe2-DeM57A_2K5OO"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md truncate">Marcus Vane</p>
+<p class="text-label-sm text-on-surface-variant">General Manager</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center px-lg h-touch_target w-full">
+<div class="flex-1 max-w-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-label-md focus:ring-2 focus:ring-primary transition-all" placeholder="Search for staff, roles, or schedules..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-tertiary-container/20 text-tertiary rounded-full">
+<span class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></span>
+<span class="font-label-sm text-label-sm">Restaurant Open</span>
+</div>
+<button class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="wifi_tethering">wifi_tethering</span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 pt-touch_target px-lg pb-xl min-h-screen">
+<!-- Header & Action Row -->
+<div class="flex items-end justify-between py-xl">
+<div>
+<nav class="flex items-center gap-2 text-label-sm text-on-surface-variant mb-2">
+<span>Admin</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">Staff Management</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Staff Management</h2>
+<p class="text-body-md text-on-surface-variant">Manage your hospitality team, monitor performance, and organize shifts.</p>
+</div>
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-label-md text-label-md shadow-lg shadow-primary/20 hover:bg-on-primary-fixed-variant transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                Add New Staff
+            </button>
+</div>
+<!-- Filters & Metrics Grid -->
+<div class="grid grid-cols-12 gap-lg mb-xl">
+<!-- Filter Bar -->
+<div class="col-span-12 lg:col-span-8 glass-card p-md rounded-xl flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Role:</span>
+<select class="bg-transparent border-none text-label-md font-bold focus:ring-0 p-0 pr-6">
+<option>All Staff</option>
+<option>Chef</option>
+<option>Waiter</option>
+<option>Manager</option>
+<option>Host</option>
+</select>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Status:</span>
+<select class="bg-transparent border-none text-label-md font-bold focus:ring-0 p-0 pr-6">
+<option>Any Status</option>
+<option>On-Duty</option>
+<option>Off-Duty</option>
+<option>On Break</option>
+</select>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Shift:</span>
+<select class="bg-transparent border-none text-label-md font-bold focus:ring-0 p-0 pr-6">
+<option>Current Week</option>
+<option>Next Week</option>
+</select>
+</div>
+<button class="ml-auto flex items-center gap-2 text-primary font-label-md hover:underline">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Advanced Filters
+                </button>
+</div>
+<!-- Quick Metrics -->
+<div class="col-span-12 lg:col-span-4 grid grid-cols-3 gap-md">
+<div class="glass-card p-md rounded-xl text-center">
+<p class="text-label-sm text-on-surface-variant mb-1">On-Duty</p>
+<p class="font-headline-md text-headline-md text-primary">12/18</p>
+</div>
+<div class="glass-card p-md rounded-xl text-center">
+<p class="text-label-sm text-on-surface-variant mb-1">Avg. Perf</p>
+<p class="font-headline-md text-headline-md text-tertiary">4.8</p>
+</div>
+<div class="glass-card p-md rounded-xl text-center">
+<p class="text-label-sm text-on-surface-variant mb-1">Labor %</p>
+<p class="font-headline-md text-headline-md text-on-surface">14.2</p>
+</div>
+</div>
+</div>
+<!-- Staff Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-lg">
+<!-- Staff Card 1 -->
+<div class="glass-card rounded-2xl overflow-hidden group hover:translate-y-[-4px] transition-all duration-300">
+<div class="relative h-24 bg-gradient-to-r from-primary/10 to-secondary/10">
+<div class="absolute -bottom-10 left-6">
+<div class="relative">
+<img alt="Elena Rodriguez" class="w-20 h-20 rounded-2xl object-cover border-4 border-surface shadow-md" data-alt="A detailed professional portrait of a senior chef in a clean white uniform, captured in a brightly lit modern kitchen environment. The lighting is high-key and professional, accentuating the clean minimalist lines and soft textures. The overall mood is disciplined and professional, using a sophisticated color palette of whites and cool grays consistent with a premium restaurant management platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGLgz9iD8cf5oEs2A0sQGa-t1EHKNzDH1Fh1XIxGOzlfN_wEqVinfu6i3Ybr8d1EdfvCEwCM6-CWEgTD6o6UVRliHLbItqFo9i-K9tGM5xvlTxeInnWhqynSKQGGtwi1qbxsB8IMNdgqYvGbQyb5HtajoEiFwuFfnCMKmxSogv3z6q1_UvM5KFs64jqbRZpXl-ETfAzqWuE6N7wu4_Hk5BdA6vvPq91VZdDHXs3qu2DXBGn5Gtu4yM4VBzwB2r63g4AFtFJBxIBCtS"/>
+<span class="absolute bottom-1 right-1 w-4 h-4 bg-green-500 border-2 border-surface rounded-full"></span>
+</div>
+</div>
+</div>
+<div class="pt-12 px-6 pb-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Elena Rodriguez</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container text-label-sm rounded-md">Head Chef</span>
+<span class="text-label-sm text-on-surface-variant">• On-Duty</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="text-label-md">e.rodriguez@gourmetpos.com</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">phone</span>
+<span class="text-label-md">+1 (555) 123-4567</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-y border-outline-variant mb-6">
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Attend.</p>
+<p class="font-bold text-label-md">98%</p>
+</div>
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Rating</p>
+<p class="font-bold text-label-md">4.9</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-on-surface-variant uppercase">Hours</p>
+<p class="font-bold text-label-md">38.5</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 px-4 py-2 border border-outline text-label-md font-bold rounded-lg hover:bg-surface-variant transition-colors">Edit Profile</button>
+<button class="flex items-center justify-center w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg hover:bg-secondary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Staff Card 2 -->
+<div class="glass-card rounded-2xl overflow-hidden group hover:translate-y-[-4px] transition-all duration-300">
+<div class="relative h-24 bg-gradient-to-r from-tertiary-container/20 to-surface-variant">
+<div class="absolute -bottom-10 left-6">
+<div class="relative">
+<img alt="Julian Chen" class="w-20 h-20 rounded-2xl object-cover border-4 border-surface shadow-md" data-alt="A professional portrait of a male waiter in a crisp white shirt and dark vest, standing in an elegant, blurred restaurant setting with soft bokeh. The lighting is warm and inviting, yet professional, maintaining a high-end minimalist feel. The image should utilize a clean, bright aesthetic with natural skin tones and a sophisticated color palette of whites, slates, and warm timber tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6OaR9Spq-CJfVqmz4zZS8cdONDSGyJWxGQeKhsD4uV5TTUKnEIlDl0Gb7Ubl06HBsrc2HKZ-PV-uhqbeeYbrozktgs55mT7vjnS7UPL8R8kEAqHjFDcWD8k3rPHaxiruO5hKZtiHDi7jg_3VCxmZGUBkOONjRfJottl7WbiMgEDjmKOhrMyt93RoSYqUKDlZ66PwOC7u8WPAU6WPbeoxvxMV4X-o7XW-nBeN_JmJnQAGgJ9GOqFiseBC2EJOC3uTsGt3UAcdOa_oZ"/>
+<span class="absolute bottom-1 right-1 w-4 h-4 bg-outline border-2 border-surface rounded-full"></span>
+</div>
+</div>
+</div>
+<div class="pt-12 px-6 pb-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Julian Chen</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-label-sm rounded-md">Lead Server</span>
+<span class="text-label-sm text-on-surface-variant">• Off-Duty</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="text-label-md">j.chen@gourmetpos.com</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">phone</span>
+<span class="text-label-md">+1 (555) 234-5678</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-y border-outline-variant mb-6">
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Attend.</p>
+<p class="font-bold text-label-md">94%</p>
+</div>
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Rating</p>
+<p class="font-bold text-label-md">4.7</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-on-surface-variant uppercase">Hours</p>
+<p class="font-bold text-label-md">32.0</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 px-4 py-2 border border-outline text-label-md font-bold rounded-lg hover:bg-surface-variant transition-colors">Edit Profile</button>
+<button class="flex items-center justify-center w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg hover:bg-secondary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Staff Card 3 -->
+<div class="glass-card rounded-2xl overflow-hidden group hover:translate-y-[-4px] transition-all duration-300">
+<div class="relative h-24 bg-gradient-to-r from-error-container/20 to-primary-container/10">
+<div class="absolute -bottom-10 left-6">
+<div class="relative">
+<img alt="Sarah Miller" class="w-20 h-20 rounded-2xl object-cover border-4 border-surface shadow-md" data-alt="A professional headshot of a female restaurant manager with a bright, welcoming smile, wearing a professional navy blazer. The background is a minimalist, high-end restaurant lobby with soft, clean lighting. The photographic style is crisp and modern, emphasizing high contrast and a clean white-mode aesthetic with deep blues and soft greys for a premium enterprise feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAFEdrourrhUcsmCCurFOXW76A2cLuEFalnUT69S6t-fmeCkeLU6pDBSfFX80K58Ys4IYh1O3SgF612kAEz4sY4P45UufplN3B1QEmYVtRvAxFvusJrpQPw0-wmQr1PUKr05kxJxyyXkRO_3Hjv-P7j_PeWGd0zTZg_jMM6R0Oso7F01Q_JODRVl1rJtDnkKEFVruWxKYQaxhuXYskbJ5cQN_ZCq1qv8TmY2P6kfITYAJmfo8uQtf9k1qYc-5GikbOAzZHdDoD56xR"/>
+<span class="absolute bottom-1 right-1 w-4 h-4 bg-green-500 border-2 border-surface rounded-full"></span>
+</div>
+</div>
+</div>
+<div class="pt-12 px-6 pb-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sarah Miller</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-tertiary-container text-on-tertiary-container text-label-sm rounded-md">Floor Manager</span>
+<span class="text-label-sm text-on-surface-variant">• On-Duty</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="text-label-md">s.miller@gourmetpos.com</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">phone</span>
+<span class="text-label-md">+1 (555) 345-6789</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-y border-outline-variant mb-6">
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Attend.</p>
+<p class="font-bold text-label-md">100%</p>
+</div>
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Rating</p>
+<p class="font-bold text-label-md">4.8</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-on-surface-variant uppercase">Hours</p>
+<p class="font-bold text-label-md">44.2</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 px-4 py-2 border border-outline text-label-md font-bold rounded-lg hover:bg-surface-variant transition-colors">Edit Profile</button>
+<button class="flex items-center justify-center w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg hover:bg-secondary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Staff Card 4 -->
+<div class="glass-card rounded-2xl overflow-hidden group hover:translate-y-[-4px] transition-all duration-300">
+<div class="relative h-24 bg-gradient-to-r from-secondary-container/20 to-tertiary-fixed-dim/10">
+<div class="absolute -bottom-10 left-6">
+<div class="relative">
+<img alt="David Park" class="w-20 h-20 rounded-2xl object-cover border-4 border-surface shadow-md" data-alt="A clean, professional portrait of a male sous chef in a kitchen, captured with a shallow depth of field. The style is sharp and modern, focusing on a bright, minimalist aesthetic. The lighting is balanced and professional, with cool highlights and warm skin tones, aligning with a high-end hospitality management application using whites, slates, and subtle primary color accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEft7x2JtlJyhL_LmjnegZYo1XQMvRrKLLeemniElqiXLSdm0MSn23vtBS6EhSJEVb5FmKxq3pCahaKom7LGLJIYLhqOQMudaoqDJvz4XfPU6PdB9957OF4XFykIgYVULwJ1NpCcqr15Pge2T-4UjZXqWu91XvJQMp2hDfCbBDY3OASlguMdlac6aicM1K2U3QtTbwzld8cY1kCI4XvKFl1jr5FlCZixzEoYMY_AnF3d9n5REYfoFiUW9E8s3DhaLXj4FM9IM_RNio"/>
+<span class="absolute bottom-1 right-1 w-4 h-4 bg-tertiary border-2 border-surface rounded-full"></span>
+</div>
+</div>
+</div>
+<div class="pt-12 px-6 pb-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">David Park</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container text-label-sm rounded-md">Sous Chef</span>
+<span class="text-label-sm text-on-surface-variant">• On Break</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="text-label-md">d.park@gourmetpos.com</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">phone</span>
+<span class="text-label-md">+1 (555) 456-7890</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-y border-outline-variant mb-6">
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Attend.</p>
+<p class="font-bold text-label-md">92%</p>
+</div>
+<div class="text-center border-r border-outline-variant">
+<p class="text-[10px] text-on-surface-variant uppercase">Rating</p>
+<p class="font-bold text-label-md">4.5</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-on-surface-variant uppercase">Hours</p>
+<p class="font-bold text-label-md">35.0</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 px-4 py-2 border border-outline text-label-md font-bold rounded-lg hover:bg-surface-variant transition-colors">Edit Profile</button>
+<button class="flex items-center justify-center w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg hover:bg-secondary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination & Footer Stats -->
+<div class="mt-xl flex items-center justify-between">
+<p class="text-label-md text-on-surface-variant">Showing <span class="font-bold text-on-surface">4</span> of <span class="font-bold text-on-surface">18</span> team members</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-colors font-bold">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-colors font-bold">3</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 1);
+        }
+        .shift-morning { background-color: #e1d4fd; color: #4f378a; border-left: 4px solid #6750a4; }
+        .shift-afternoon { background-color: #ffdf93; color: #594400; border-left: 4px solid #765b00; }
+        .shift-evening { background-color: #ffdad6; color: #93000a; border-left: 4px solid #ba1a1a; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbc4d2; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdf7ff",
+                    "secondary-container": "#e1d4fd",
+                    "secondary-fixed": "#e9ddff",
+                    "primary-fixed-dim": "#cfbcff",
+                    "surface-variant": "#e6e0e9",
+                    "on-surface-variant": "#494551",
+                    "surface-bright": "#fdf7ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f2ecf4",
+                    "on-primary-fixed": "#22005d",
+                    "on-secondary-fixed-variant": "#4b4263",
+                    "background": "#fdf7ff",
+                    "secondary": "#63597c",
+                    "on-tertiary-container": "#503d00",
+                    "tertiary-container": "#c9a74d",
+                    "surface-container-high": "#ece6ee",
+                    "on-primary-container": "#e0d2ff",
+                    "tertiary": "#765b00",
+                    "primary-fixed": "#e9ddff",
+                    "surface-tint": "#6750a4",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#cbc4d2",
+                    "surface-container-low": "#f8f2fa",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f5eff7",
+                    "inverse-primary": "#cfbcff",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-surface": "#1d1b20",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#cdc0e9",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdf93",
+                    "on-secondary-fixed": "#1f1635",
+                    "on-secondary-container": "#645a7d",
+                    "tertiary-fixed-dim": "#e7c365",
+                    "on-tertiary-fixed-variant": "#594400",
+                    "primary-container": "#6750a4",
+                    "outline": "#7a7582",
+                    "inverse-surface": "#322f35",
+                    "on-primary-fixed-variant": "#4f378a",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e6e0e9",
+                    "surface-dim": "#ded8e0",
+                    "on-background": "#1d1b20",
+                    "primary": "#4f378a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "touch_target": "44px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "price-display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "price-display": ["28px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline shadow-sm flex flex-col p-4 z-50">
+<div class="mb-lg px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">GourmetPOS</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Main Dining Hall</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">point_of_sale</span>
+                POS
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">table_restaurant</span>
+                Tables
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                Orders
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg font-bold" href="#">
+<span class="material-symbols-outlined">badge</span>
+                Staff
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                Reports
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">M</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">Manager</p>
+<p class="text-[10px] text-on-surface-variant">Shift Active</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-lg h-touch_target">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-full text-label-md focus:outline-none focus:ring-2 focus:ring-primary w-64" placeholder="Search staff or roles..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div class="flex items-center gap-md">
+<span class="font-label-md text-tertiary font-bold flex items-center gap-1">
+<span class="w-2 h-2 bg-tertiary rounded-full"></span>
+                    Restaurant Open
+                </span>
+<div class="flex gap-sm">
+<button class="w-touch_target h-touch_target flex items-center justify-center hover:bg-surface-container-highest rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-touch_target h-touch_target flex items-center justify-center hover:bg-surface-container-highest rounded-full transition-all">
+<span class="material-symbols-outlined">wifi_tethering</span>
+</button>
+<button class="w-touch_target h-touch_target flex items-center justify-center hover:bg-surface-container-highest rounded-full transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</div>
+<img alt="Manager Profile" class="w-8 h-8 rounded-full object-cover border border-outline" data-alt="Professional portrait of a male restaurant manager in a minimalist office setting, wearing a crisp charcoal grey blazer. Soft cinematic lighting with deep shadows and high-end bokeh background. The aesthetic is sophisticated and professional, reflecting a premium hospitality management persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNpzUYvg0E7if9WJdsd9cU6esknK1CkEyK-96rmls8euQJkLECkucXEXfcQPt0yxPXAiA2Ikvewq0dnDBn6FSFcjcEQyVg-gnNtAsf4Mr-fOcMuwu1SPkO11eY8LZ0n5UQ4IH1XBs75dx8wxPuzy46Tal6n9oEnSyAZWDNFr4Rri5xa4-H663zZaFls3UFhh0cgbyeD9VHAY2qDKTgJa1-QgEBwXilqotTvnPInKHbqYAg8-mnxevKQLqJ5Drie73l_WDqFVzxmffi"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pl-64 pt-touch_target h-screen flex">
+<!-- Left Section: Schedule Grid -->
+<div class="flex-1 flex flex-col p-lg gap-lg overflow-hidden">
+<!-- Calendar Controls -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Weekly Roster</h2>
+<div class="flex bg-surface-container-high rounded-lg p-1">
+<button class="px-4 py-1.5 bg-surface rounded-md shadow-sm text-label-md font-bold text-primary transition-all">Week</button>
+<button class="px-4 py-1.5 text-label-md text-on-surface-variant hover:text-on-surface transition-all">Month</button>
+</div>
+<div class="flex items-center gap-sm ml-lg">
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="font-label-md font-bold">Oct 23 - Oct 29, 2023</span>
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-2 px-md py-2 border border-outline-variant text-on-surface font-label-md rounded-lg hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                        Auto-Generate Roster
+                    </button>
+<button class="flex items-center gap-2 px-lg py-2 bg-primary text-on-primary font-label-md rounded-lg shadow-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">publish</span>
+                        Publish Schedule
+                    </button>
+</div>
+</div>
+<!-- Grid Header -->
+<div class="grid grid-cols-[180px_repeat(7,1fr)] gap-2 bg-surface-container rounded-t-xl p-2 border-x border-t border-outline-variant">
+<div class="flex items-center px-2 font-label-sm uppercase tracking-wider text-on-surface-variant">Staff Member</div>
+<div class="text-center py-2">
+<p class="text-label-sm font-bold text-primary">MON</p>
+<p class="text-label-md">23</p>
+</div>
+<div class="text-center py-2">
+<p class="text-label-sm font-bold text-on-surface-variant">TUE</p>
+<p class="text-label-md">24</p>
+</div>
+<div class="text-center py-2">
+<p class="text-label-sm font-bold text-on-surface-variant">WED</p>
+<p class="text-label-md">25</p>
+</div>
+<div class="text-center py-2">
+<p class="text-label-sm font-bold text-on-surface-variant">THU</p>
+<p class="text-label-md">26</p>
+</div>
+<div class="text-center py-2">
+<p class="text-label-sm font-bold text-on-surface-variant">FRI</p>
+<p class="text-label-md">27</p>
+</div>
+<div class="text-center py-2">
+<p class="text-label-sm font-bold text-on-surface-variant">SAT</p>
+<p class="text-label-md">28</p>
+</div>
+<div class="text-center py-2">
+<p class="text-label-sm font-bold text-on-surface-variant">SUN</p>
+<p class="text-label-md">29</p>
+</div>
+</div>
+<!-- Roster Body -->
+<div class="flex-1 overflow-y-auto border-x border-b border-outline-variant rounded-b-xl bg-white">
+<!-- Chef Swimlane -->
+<div class="bg-surface-container-low/50 px-4 py-1 border-y border-outline-variant/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">restaurant_menu</span>
+<span class="text-[10px] font-black uppercase tracking-[0.1em] text-on-surface-variant">Kitchen Staff (3/4)</span>
+</div>
+<!-- Staff Row: Chef Marco -->
+<div class="grid grid-cols-[180px_repeat(7,1fr)] min-h-[80px] border-b border-outline-variant/30 hover:bg-surface-container-lowest transition-all group">
+<div class="p-3 flex items-center gap-3 border-r border-outline-variant/20">
+<img alt="Chef Marco" class="w-10 h-10 rounded-lg object-cover" data-alt="Close-up of a professional chef with a serious expression, wearing a traditional white double-breasted chef's coat. The setting is a clean, modern commercial kitchen with soft blue and warm gold ambient lighting. Elegant high-contrast portrait style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQqSw0NW0C3dhPJNEOZfdRmQSG-qy6AcPzI13U7dEik5YwF6GS24bfgCbumoTkN2-wQa59-fgvzL5EsxDKEzybssNbBlJs6F_Bb8WSKmkgupd34jLZGPzFLQ-DId8nGzJTlPo_n49NnzII-8HmZGdbiEzPtiCANk9OQ-N9lOYelOp1937E5CLuJk703nqabGX9VaAakklwzNRcubNyb9Vy4XnYrV5ILi645iQpLiNi3d64sTINgr27vYz1xL8bHMN2cdFLW0dIQkaH"/>
+<div>
+<p class="text-label-md font-bold text-on-surface">Marco R.</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Head Chef</p>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-morning h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">MORNING</span>
+<span class="text-[11px] font-bold">08:00 - 16:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-morning h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">MORNING</span>
+<span class="text-[11px] font-bold">08:00 - 16:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 bg-surface-container-low/30"></div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-afternoon h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">AFTERNOON</span>
+<span class="text-[11px] font-bold">14:00 - 22:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-afternoon h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">AFTERNOON</span>
+<span class="text-[11px] font-bold">14:00 - 22:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-evening h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black text-white">EVENING</span>
+<span class="text-[11px] font-bold">17:00 - 01:00</span>
+</div>
+</div>
+<div class="p-1"></div>
+</div>
+<!-- Waiter Swimlane -->
+<div class="bg-surface-container-low/50 px-4 py-1 border-y border-outline-variant/30 flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-primary">local_cafe</span>
+<span class="text-[10px] font-black uppercase tracking-[0.1em] text-on-surface-variant">Front of House (5/5)</span>
+</div>
+<!-- Staff Row: Sarah J. -->
+<div class="grid grid-cols-[180px_repeat(7,1fr)] min-h-[80px] border-b border-outline-variant/30 hover:bg-surface-container-lowest transition-all group">
+<div class="p-3 flex items-center gap-3 border-r border-outline-variant/20">
+<img alt="Sarah J." class="w-10 h-10 rounded-lg object-cover" data-alt="Professional female server with a friendly smile, wearing a modern black bistro apron. The background is a sophisticated restaurant dining room with soft, warm lighting and wooden accents. Crisp, professional headshot with clean lighting and minimal distraction." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJSrNDPQaat7wyQ5nxjaZ6CucX3nlqAlmmtxJfVSOoV7x3KtoxZCPgncqVFNyqm1822_q6_eBjr689SqQ58wE1K2BTIkmSVRQu_QIGcRRyuoWA3bwvHV3akVDgSJRobmOrCzrnV_98iGDESjD32aX28xeNvOmR37Q6d_WMqq6N8qMT8kSfRxbnHdYLQLHMf8QHCAMqzurQJ2wx_fr9zwfB3qmg8eBCk1P_FwqYjZHg3vpOq7aBwXZ0or47-xr02HLgKFHyNiglWiZL"/>
+<div>
+<p class="text-label-md font-bold text-on-surface">Sarah J.</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Waitress</p>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 bg-surface-container-low/30"></div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-afternoon h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">AFTERNOON</span>
+<span class="text-[11px] font-bold">12:00 - 20:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-afternoon h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">AFTERNOON</span>
+<span class="text-[11px] font-bold">12:00 - 20:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-evening h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">EVENING</span>
+<span class="text-[11px] font-bold">17:00 - 01:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-evening h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">EVENING</span>
+<span class="text-[11px] font-bold">17:00 - 01:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 bg-surface-container-low/30"></div>
+<div class="p-1 relative cursor-grab active:cursor-grabbing">
+<div class="shift-morning h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">MORNING</span>
+<span class="text-[11px] font-bold">09:00 - 17:00</span>
+</div>
+</div>
+</div>
+<!-- Staff Row: Kevin L. -->
+<div class="grid grid-cols-[180px_repeat(7,1fr)] min-h-[80px] border-b border-outline-variant/30 hover:bg-surface-container-lowest transition-all group">
+<div class="p-3 flex items-center gap-3 border-r border-outline-variant/20">
+<img alt="Kevin L." class="w-10 h-10 rounded-lg object-cover" data-alt="Portrait of a friendly young male waiter in a stylish hospitality uniform, standing in a brightly lit modern bistro. Soft natural morning light streaming through large windows, creating a welcoming and clean atmosphere. Minimalist and high-quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSdGoEMm1zYC4SoiwQSW0DYP5Zq0BWeMcYXFAAMz2ownKo2C_fSLiHemSN9J5a6hdu9mIREeXAwV2v4kWimCRhrTGwZpIxNayvWhsYjOJXY0ZcmkfwSUhTdNvv-wf5SwjQbHKLOkE35X6oq9yYLErACqpBt9mJSoaO9QJAHgfyvE-flQwfka0_oJblEXQ7dJulb6BAPoUIuPXQJuDWeiVJ4hKLPAhow3pwJ6fU2j1-QDpj7wWjDsp7kw-Ayv9upN0LGFDzi1Gd6Ixo"/>
+<div>
+<p class="text-label-md font-bold text-on-surface">Kevin L.</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Server</p>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-morning h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">MORNING</span>
+<span class="text-[11px] font-bold">07:00 - 15:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 bg-surface-container-low/30"></div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-morning h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">MORNING</span>
+<span class="text-[11px] font-bold">07:00 - 15:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-morning h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">MORNING</span>
+<span class="text-[11px] font-bold">07:00 - 15:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 relative cursor-grab active:cursor-grabbing">
+<div class="shift-afternoon h-full rounded-md p-2 flex flex-col justify-between">
+<span class="text-[10px] font-black">AFTERNOON</span>
+<span class="text-[11px] font-bold">13:00 - 21:00</span>
+</div>
+</div>
+<div class="p-1 border-r border-outline-variant/20 bg-surface-container-low/30"></div>
+<div class="p-1 bg-surface-container-low/30"></div>
+</div>
+<!-- Add Staff Slot -->
+<div class="p-4 flex items-center justify-center border-t border-outline-variant/20">
+<button class="flex items-center gap-2 text-primary font-label-md hover:underline transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                        Add Staff Member to Roster
+                    </button>
+</div>
+</div>
+<!-- Footer Legend -->
+<div class="flex items-center gap-xl p-md bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full shift-morning border-none"></div>
+<span class="text-[11px] font-bold text-on-surface-variant">Morning (06:00 - 14:00)</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full shift-afternoon border-none"></div>
+<span class="text-[11px] font-bold text-on-surface-variant">Afternoon (14:00 - 22:00)</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full shift-evening border-none"></div>
+<span class="text-[11px] font-bold text-on-surface-variant">Evening (22:00 - 06:00)</span>
+</div>
+<div class="ml-auto flex items-center gap-md">
+<span class="text-[11px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                        Shift coverage is optimal for current staff availability.
+                    </span>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Shift Requests -->
+<aside class="w-80 bg-surface border-l border-outline-variant flex flex-col">
+<div class="p-lg border-b border-outline-variant">
+<div class="flex items-center justify-between mb-sm">
+<h3 class="font-headline-md text-label-md font-bold uppercase tracking-widest text-on-surface">Shift Requests</h3>
+<span class="bg-error text-on-error text-[10px] font-black px-2 py-0.5 rounded-full">3 NEW</span>
+</div>
+<p class="text-label-sm text-on-surface-variant">Pending time-off and swaps</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Request Card 1 -->
+<div class="glass-panel p-md rounded-xl shadow-sm border-l-4 border-l-primary relative overflow-hidden">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">swap_horiz</span>
+<span class="text-[10px] font-black text-primary uppercase">Shift Swap</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">2h ago</span>
+</div>
+<p class="text-label-md font-bold mb-xs">Sarah J. &amp; Kevin L.</p>
+<p class="text-[11px] text-on-surface-variant mb-md">Request to swap Afternoon shift on Friday, Oct 27.</p>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 bg-primary text-on-primary text-[11px] font-bold rounded-md hover:opacity-90 transition-all">Approve</button>
+<button class="flex-1 py-1.5 border border-outline-variant text-on-surface text-[11px] font-bold rounded-md hover:bg-surface-container-low transition-all">Decline</button>
+</div>
+</div>
+<!-- Request Card 2 -->
+<div class="glass-panel p-md rounded-xl shadow-sm border-l-4 border-l-tertiary relative overflow-hidden">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]">event_busy</span>
+<span class="text-[10px] font-black text-tertiary uppercase">Time Off</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">5h ago</span>
+</div>
+<p class="text-label-md font-bold mb-xs">Marco R.</p>
+<p class="text-[11px] text-on-surface-variant mb-md">Family emergency. Requesting leave for Sunday, Oct 29.</p>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 bg-primary text-on-primary text-[11px] font-bold rounded-md hover:opacity-90 transition-all">Approve</button>
+<button class="flex-1 py-1.5 border border-outline-variant text-on-surface text-[11px] font-bold rounded-md hover:bg-surface-container-low transition-all">Decline</button>
+</div>
+</div>
+<!-- Request Card 3 -->
+<div class="glass-panel p-md rounded-xl shadow-sm border-l-4 border-l-outline relative overflow-hidden opacity-80">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">hourglass_empty</span>
+<span class="text-[10px] font-black text-on-surface-variant uppercase">Open Shift</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">Yesterday</span>
+</div>
+<p class="text-label-md font-bold mb-xs">Weekend Extra</p>
+<p class="text-[11px] text-on-surface-variant mb-md">No staff members have claimed the Saturday Evening dish-washing shift yet.</p>
+<button class="w-full py-1.5 border border-primary text-primary text-[11px] font-bold rounded-md hover:bg-primary-container transition-all">Assign Staff</button>
+</div>
+</div>
+<div class="p-lg bg-surface-container">
+<h4 class="text-label-sm font-black uppercase mb-sm text-on-surface-variant">Coverage Stats</h4>
+<div class="space-y-sm">
+<div>
+<div class="flex justify-between text-[11px] mb-1">
+<span>Morning Coverage</span>
+<span class="font-bold">100%</span>
+</div>
+<div class="w-full bg-outline-variant h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[100%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[11px] mb-1">
+<span>Evening Coverage</span>
+<span class="font-bold text-error">75%</span>
+</div>
+<div class="w-full bg-outline-variant h-1 rounded-full overflow-hidden">
+<div class="bg-error h-full w-[75%]"></div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>
